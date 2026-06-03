@@ -50,7 +50,7 @@ export const content = `
     <section id="screen1" class="doc-section screen-section">
       <h2>Screen 1 — Order Book Dump</h2>
       <figure class="screen-image">
-        <img src="/iris-x/images/Screen1.jpeg" alt="Order Book Dump" loading="lazy" />
+        <img src="https://ai-balance.org/iris-x/images/Screen1.jpeg" alt="Order Book Dump" loading="lazy" />
         <figcaption>Order Book snapshot showing bid/ask depth and liquidity imbalance</figcaption>
       </figure>
 
@@ -102,7 +102,7 @@ export const content = `
     <section id="screen2" class="doc-section screen-section">
       <h2>Screen 2 — Historical View</h2>
       <figure class="screen-image">
-        <img src="/iris-x/images/Screen2.jpeg" alt="Historical Chart" loading="lazy" />
+        <img src="https://ai-balance.org/iris-x/images/Screen2.jpeg" alt="Historical Chart" loading="lazy" />
         <figcaption>20-day historical price chart with SMA and volatility bands</figcaption>
       </figure>
 
@@ -154,7 +154,7 @@ export const content = `
     <section id="screen3" class="doc-section screen-section">
       <h2>Screen 3 — Tape Engine</h2>
       <figure class="screen-image">
-        <img src="/iris-x/images/Screen3.jpeg" alt="Tape Engine Analysis" loading="lazy" />
+        <img src="https://ai-balance.org/iris-x/images/Screen3.jpeg" alt="Tape Engine Analysis" loading="lazy" />
         <figcaption>Intraday tape analysis: trades, volume, block activity</figcaption>
       </figure>
 
@@ -207,7 +207,7 @@ export const content = `
     <section id="screen4" class="doc-section screen-section">
       <h2>Screen 4 — Flow Engine</h2>
       <figure class="screen-image">
-        <img src="/iris-x/images/Screen4.jpeg" alt="Flow Engine Analysis" loading="lazy" />
+        <img src="https://ai-balance.org/iris-x/images/Screen4.jpeg" alt="Flow Engine Analysis" loading="lazy" />
         <figcaption>Institutional flow analysis: venue split, dark pool activity, possession estimate</figcaption>
       </figure>
 
@@ -260,7 +260,7 @@ export const content = `
     <section id="screen5" class="doc-section screen-section">
       <h2>Screen 5 — Microstructure Engine</h2>
       <figure class="screen-image">
-        <img src="/iris-x/images/Screen5.jpeg" alt="Microstructure Engine" loading="lazy" />
+        <img src="https://ai-balance.org/iris-x/images/Screen5.jpeg" alt="Microstructure Engine" loading="lazy" />
         <figcaption>Liquidity, spread, and momentum metrics</figcaption>
       </figure>
 
@@ -311,7 +311,7 @@ export const content = `
     <section id="screen6" class="doc-section screen-section">
       <h2>Screen 6 — Balance Laws Engine</h2>
       <figure class="screen-image">
-        <img src="/iris-x/images/Screen6.jpeg" alt="Balance Laws Computation" loading="lazy" />
+        <img src="https://ai-balance.org/iris-x/images/Screen6.jpeg" alt="Balance Laws Computation" loading="lazy" />
         <figcaption>Seven Balance Laws aggregated into composite Balance Score</figcaption>
       </figure>
 
@@ -403,7 +403,7 @@ export const content = `
     <section id="screen7" class="doc-section screen-section">
       <h2>Screen 7 — Modules Overview</h2>
       <figure class="screen-image">
-        <img src="/iris-x/images/Screen7.jpeg" alt="Modules Overview" loading="lazy" />
+        <img src="https://ai-balance.org/iris-x/images/Screen7.jpeg" alt="Modules Overview" loading="lazy" />
         <figcaption>Integration of 19 AI modules and consensus decision</figcaption>
       </figure>
 
@@ -465,7 +465,7 @@ export const content = `
     <section id="screen8" class="doc-section screen-section">
       <h2>Screen 8 — CIE Report Integration</h2>
       <figure class="screen-image">
-        <img src="/iris-x/images/linkedinpost2.jpg" alt="CIE-X Report" loading="lazy" />
+        <img src="https://ai-balance.org/iris-x/images/linkedinpost2.jpg" alt="CIE-X Report" loading="lazy" />
         <figcaption>CIE-X macro regime, 6AM signals, and consolidation/expansion analysis</figcaption>
       </figure>
 

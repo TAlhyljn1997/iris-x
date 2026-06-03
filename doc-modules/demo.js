@@ -134,7 +134,9 @@ export const content = `
     <details id="screen2" class="accordion-item">
       <summary class="accordion-header">
         <span class="accordion-triangle">▶</span>
-      <h2>Screen 2 — Historical View</h2>
+        <h2 style="display:inline; margin: 0;">Screen 2 — Historical View</h2>
+      </summary>
+      <div class="accordion-content">
       <figure class="screen-image">
         <img src="https://ai-balance.org/iris-x/images/Screen2.jpeg" alt="Historical Chart" loading="lazy" />
         <figcaption>20-day historical price chart with SMA and volatility bands</figcaption>
@@ -217,13 +219,18 @@ export const content = `
           </p>
         </div>
       </div>
-    </section>
+    </div>
+    </details>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- SCREEN 3: TAPE ENGINE -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="screen3" class="doc-section screen-section">
-      <h2>Screen 3 — Tape Engine</h2>
+    <details id="screen3" class="accordion-item">
+      <summary class="accordion-header">
+        <span class="accordion-triangle">▶</span>
+        <h2 style="display:inline; margin: 0;">Screen 3 — Tape Engine</h2>
+      </summary>
+      <div class="accordion-content">
       <figure class="screen-image">
         <img src="https://ai-balance.org/iris-x/images/Screen3.jpeg" alt="Tape Engine Analysis" loading="lazy" />
         <figcaption>Intraday tape analysis: trades, volume, block activity</figcaption>
@@ -309,13 +316,18 @@ export const content = `
           </p>
         </div>
       </div>
-    </section>
+    </div>
+    </details>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- SCREEN 4: FLOW ENGINE -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="screen4" class="doc-section screen-section">
-      <h2>Screen 4 — Flow Engine</h2>
+    <details id="screen4" class="accordion-item">
+      <summary class="accordion-header">
+        <span class="accordion-triangle">▶</span>
+        <h2 style="display:inline; margin: 0;">Screen 4 — Flow Engine</h2>
+      </summary>
+      <div class="accordion-content">
       <figure class="screen-image">
         <img src="https://ai-balance.org/iris-x/images/Screen4.jpeg" alt="Flow Engine Analysis" loading="lazy" />
         <figcaption>Institutional flow analysis: venue split, dark pool activity, possession estimate</figcaption>
@@ -404,13 +416,18 @@ export const content = `
           </p>
         </div>
       </div>
-    </section>
+    </div>
+    </details>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- SCREEN 5: MICROSTRUCTURE ENGINE -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="screen5" class="doc-section screen-section">
-      <h2>Screen 5 — Microstructure Engine</h2>
+    <details id="screen5" class="accordion-item">
+      <summary class="accordion-header">
+        <span class="accordion-triangle">▶</span>
+        <h2 style="display:inline; margin: 0;">Screen 5 — Microstructure Engine</h2>
+      </summary>
+      <div class="accordion-content">
       <figure class="screen-image">
         <img src="https://ai-balance.org/iris-x/images/Screen5.jpeg" alt="Microstructure Engine" loading="lazy" />
         <figcaption>Liquidity, spread, and momentum metrics</figcaption>
@@ -491,13 +508,18 @@ export const content = `
           </p>
         </div>
       </div>
-    </section>
+    </div>
+    </details>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- SCREEN 6: BALANCE LAWS ENGINE -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="screen6" class="doc-section screen-section">
-      <h2>Screen 6 — Balance Laws Engine</h2>
+    <details id="screen6" class="accordion-item">
+      <summary class="accordion-header">
+        <span class="accordion-triangle">▶</span>
+        <h2 style="display:inline; margin: 0;">Screen 6 — Balance Laws Engine</h2>
+      </summary>
+      <div class="accordion-content">
       <figure class="screen-image">
         <img src="https://ai-balance.org/iris-x/images/Screen6.jpeg" alt="Balance Laws Computation" loading="lazy" />
         <figcaption>Seven Balance Laws aggregated into composite Balance Score</figcaption>
@@ -612,13 +634,18 @@ export const content = `
           </p>
         </div>
       </div>
-    </section>
+    </div>
+    </details>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- SCREEN 7: MODULES OVERVIEW -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="screen7" class="doc-section screen-section">
-      <h2>Screen 7 — Modules Overview</h2>
+    <details id="screen7" class="accordion-item">
+      <summary class="accordion-header">
+        <span class="accordion-triangle">▶</span>
+        <h2 style="display:inline; margin: 0;">Screen 7 — Modules Overview</h2>
+      </summary>
+      <div class="accordion-content">
       <figure class="screen-image">
         <img src="https://ai-balance.org/iris-x/images/Screen7.jpeg" alt="Modules Overview" loading="lazy" />
         <figcaption>Integration of 19 AI modules and consensus decision</figcaption>
@@ -696,13 +723,18 @@ export const content = `
           </p>
         </div>
       </div>
-    </section>
+    </div>
+    </details>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- SCREEN 8: CIE REPORT INTEGRATION -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="screen8" class="doc-section screen-section">
-      <h2>Screen 8 — CIE Report Integration</h2>
+    <details id="screen8" class="accordion-item">
+      <summary class="accordion-header">
+        <span class="accordion-triangle">▶</span>
+        <h2 style="display:inline; margin: 0;">Screen 8 — CIE Report Integration</h2>
+      </summary>
+      <div class="accordion-content">
       <figure class="screen-image">
         <img src="https://ai-balance.org/iris-x/images/linkedinpost2.jpg" alt="CIE-X Report" loading="lazy" />
         <figcaption>CIE-X macro regime, 6AM signals, and consolidation/expansion analysis</figcaption>
@@ -775,7 +807,8 @@ export const content = `
           </p>
         </div>
       </div>
-    </section>
+    </div>
+    </details>
 
     <footer class="doc-footer">
       <p>

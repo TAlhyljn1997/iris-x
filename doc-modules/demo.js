@@ -30,11 +30,11 @@ export const content = `
 <div class="doc-layout fade-in-up">
 
   <header class="doc-header">
-    <button class="btn-return-dashboard" onclick="returnToMainDashboard()">
+    <h1>IRIS-X v12.0 — Complete Demo Panel</h1>
+    <p class="doc-subtitle">Click triangles to expand/collapse screens</p>
+    <button class="btn-return-dashboard" onclick="returnToMainDashboard()" style="margin-top: 15px;">
       ⬅ Return to Main Dashboard
     </button>
-    <h1>IRIS-X v12.0 — Complete Demo Panel</h1>
-    <p class="doc-subtitle">Microstructure Balance Model demonstration using PLS.ASX</p>
   </header>
 
 
@@ -43,8 +43,12 @@ export const content = `
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- SCREEN 1: ORDER BOOK DUMP -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="screen1" class="doc-section screen-section">
-      <h2>Screen 1 — Order Book Dump</h2>
+    <details id="screen1" class="accordion-item" open>
+      <summary class="accordion-header">
+        <span class="accordion-triangle">▼</span>
+        <h2 style="display:inline; margin: 0;">Screen 1 — Order Book Dump</h2>
+      </summary>
+      <div class="accordion-content">
       <figure class="screen-image">
         <img src="https://ai-balance.org/iris-x/images/Screen1.jpeg" alt="Order Book Dump" loading="lazy" />
         <figcaption>Order Book snapshot showing bid/ask depth and liquidity imbalance</figcaption>
@@ -121,12 +125,15 @@ export const content = `
           </p>
         </div>
       </div>
-    </section>
+      </div>
+    </details>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- SCREEN 2: HISTORICAL VIEW -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="screen2" class="doc-section screen-section">
+    <details id="screen2" class="accordion-item">
+      <summary class="accordion-header">
+        <span class="accordion-triangle">▶</span>
       <h2>Screen 2 — Historical View</h2>
       <figure class="screen-image">
         <img src="https://ai-balance.org/iris-x/images/Screen2.jpeg" alt="Historical Chart" loading="lazy" />

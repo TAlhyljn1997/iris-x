@@ -63,15 +63,17 @@ Unauthorized reproduction, distribution, or AI training prohibited.
     }
 
     header.ix-header h1 {
-      font-size: 2.5em;
+      font-size: 2.2em;
       margin-bottom: 10px;
       font-weight: 700;
+      letter-spacing: -0.6px;
     }
 
     header.ix-header .subtitle {
-      font-size: 1.1em;
+      font-size: 0.95em;
       opacity: 0.95;
       margin-bottom: 15px;
+      font-weight: 500;
     }
 
     .ix-header-controls {
@@ -233,10 +235,12 @@ Unauthorized reproduction, distribution, or AI training prohibited.
 
     h2 {
       color: #0066cc;
-      font-size: 2em;
+      font-size: 1.55em;
       margin-bottom: 20px;
       padding-bottom: 15px;
       border-bottom: 3px solid #0066cc;
+      font-weight: 700;
+      letter-spacing: -0.4px;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -248,9 +252,63 @@ Unauthorized reproduction, distribution, or AI training prohibited.
 
     h3 {
       color: #004499;
-      font-size: 1.5em;
+      font-size: 1.15em;
       margin-top: 30px;
       margin-bottom: 15px;
+      font-weight: 650;
+      letter-spacing: -0.3px;
+    }
+
+    h4 {
+      color: #1a1a1a;
+      font-size: 1em;
+      margin-top: 18px;
+      margin-bottom: 12px;
+      font-weight: 650;
+    }
+
+    p {
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* IMAGE ANIMATIONS */
+    /* ─────────────────────────────────────────────────────────── */
+    img {
+      animation: fadeInSlideUp 0.8s ease-out;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    @keyframes fadeInSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    img:hover {
+      filter: brightness(1.05) drop-shadow(0 10px 25px rgba(0,0,0,0.15));
+      transition: all 0.3s ease;
     }
 
     @media (prefers-color-scheme: dark) {

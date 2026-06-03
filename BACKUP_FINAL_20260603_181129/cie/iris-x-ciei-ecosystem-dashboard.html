@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRIS-X + CIE-X: Unified Trading Ecosystem Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: #3498db;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: #2980b9;
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2980b9 0%, #1a5490 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        header .subtitle {
+            margin-top: 15px;
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav button {
+            padding: 10px 20px;
+            border: 2px solid #3498db;
+            background: white;
+            color: #3498db;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        nav button:hover,
+        nav button.active {
+            background: #3498db;
+            color: white;
+        }
+
+        section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: none;
+        }
+
+        section.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h2 {
+            color: #2980b9;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.4em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f4f8 100%);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .card.iris {
+            border-left-color: #3498db;
+        }
+
+        .card.cie {
+            border-left-color: #e67e22;
+        }
+
+        .card.engine {
+            border-left-color: #9b59b6;
+        }
+
+        .card h4 {
+            color: #2980b9;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .card.cie h4 {
+            color: #e67e22;
+        }
+
+        .card.engine h4 {
+            color: #9b59b6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.95em;
+            opacity: 0.95;
+        }
+
+        .image-section {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 15px 0;
+        }
+
+        .image-caption {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .architecture-diagram {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border: 2px dashed #3498db;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .phase-box {
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            color: white;
+        }
+
+        .p1 { background: #3498db; }
+        .p2 { background: #2ecc71; }
+        .p3 { background: #f39c12; }
+        .p4 { background: #e74c3c; }
+        .p5 { background: #c0392b; }
+        .p6 { background: #2c3e50; }
+
+        .two-tier {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .tier {
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .tier.micro {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: 2px solid #3498db;
+        }
+
+        .tier.macro {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 2px solid #e67e22;
+        }
+
+        .tier h4 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .tier.micro h4 {
+            color: #2980b9;
+        }
+
+        .tier.macro h4 {
+            color: #d68910;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2,
+            .two-tier {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" onclick="setLanguage('vi')">Tiếng Việt</button>
+        <button class="lang-btn" onclick="setLanguage('en')">English</button>
+    </div>
+
+    <!-- Header -->
+    <div class="container">
+        <header>
+            <h1 data-vi="IRIS-X + CIE-X: HỆ SINH THÁI GIAO DỊCH THỐNG NHẤT"
+                data-en="IRIS-X + CIE-X: Unified Trading Ecosystem">
+                IRIS-X + CIE-X: HỆ SINH THÁI GIAO DỊCH THỐNG NHẤT
+            </h1>
+            <p data-vi="Gộp 10 năm nghiên cứu trading vào một nền tảng duy nhất"
+               data-en="Consolidating 10 Years of Trading Research into One Platform">
+                Gộp 10 năm nghiên cứu trading vào một nền tảng duy nhất
+            </p>
+            <div class="subtitle">
+                <span data-vi="Phiên bản v12.0 - Sẵn sàng sản xuất"
+                      data-en="Version v12.0 - Production Ready">
+                    Phiên bản v12.0 - Sẵn sàng sản xuất
+                </span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav>
+            <button class="active" onclick="showSection('overview')" data-vi="Tổng Quan" data-en="Overview">Tổng Quan</button>
+            <button onclick="showSection('architecture')" data-vi="Kiến Trúc" data-en="Architecture">Kiến Trúc</button>
+            <button onclick="showSection('engines')" data-vi="5 Công Cụ" data-en="5 Engines">5 Công Cụ</button>
+            <button onclick="showSection('features')" data-vi="Tính Năng" data-en="Features">Tính Năng</button>
+            <button onclick="showSection('screens')" data-vi="Giao Diện" data-en="Screens">Giao Diện</button>
+            <button onclick="showSection('glossary')" data-vi="Từ Điển" data-en="Glossary">Từ Điển</button>
+            <button onclick="showSection('faq')" data-vi="Hỏi Đáp" data-en="FAQ">Hỏi Đáp</button>
+        </nav>
+
+        <!-- ============ SECTION 1: OVERVIEW ============ -->
+        <section id="overview" class="active">
+            <h2 data-vi="📋 Tổng Quan Thi Hành" data-en="📋 Executive Overview">
+                📋 Tổng Quan Thi Hành
+            </h2>
+
+            <p data-vi="Sau 10 năm xây dựng các mô hình giao dịch trên nhiều nền tảng khác nhau, IRIS-X hiệp nhất mọi thứ vào một nền tảng phân tích giao dịch duy nhất."
+               data-en="After 10 years of consolidating trading research across multiple platforms, IRIS-X unifies everything into a single, modular trading analysis platform.">
+                Sau 10 năm xây dựng các mô hình giao dịch trên nhiều nền tảng khác nhau, IRIS-X hiệp nhất mọi thứ vào một nền tảng phân tích giao dịch duy nhất.
+            </p>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label" data-vi="Năm Nghiên Cứu" data-en="Years of Research">Năm Nghiên Cứu</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label" data-vi="Công Cụ Xử Lý" data-en="Processing Engines">Công Cụ Xử Lý</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">34+</div>
+                    <div class="stat-label" data-vi="Tín Hiệu Cấu Trúc" data-en="Structural Signals">Tín Hiệu Cấu Trúc</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label" data-vi="Giai Đoạn Thị Trường" data-en="Market Phases">Giai Đoạn Thị Trường</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">&lt;1s</div>
+                    <div class="stat-label" data-vi="Thời Gian Báo Cáo" data-en="Report Time">Thời Gian Báo Cáo</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label" data-vi="Quy Mô Cổ Phiếu" data-en="Stock Scale">Quy Mô Cổ Phiếu</div>
+                </div>
+            </div>
+
+            <h3 data-vi="Vấn Đề Đã Giải Quyết" data-en="Problem Solved">
+                Vấn Đề Đã Giải Quyết
+            </h3>
+
+            <div class="grid-2">
+                <div class="card iris">
+                    <h4 data-vi="❌ Trước Đây" data-en="❌ Before">❌ Trước Đây</h4>
+                    <ul class="feature-list" style="list-style: none;">
+                        <li data-vi="Công cụ rải rác (Python, Excel, R, dashboard)"
+                            data-en="Fragmented tools (Python, Excel, R, dashboards)">
+                            Công cụ rải rác (Python, Excel, R, dashboard)
+                        </li>
+                        <li data-vi="Insights cô lập trong các hệ thống riêng biệt"
+                            data-en="Insights isolated in separate systems">
+                            Insights cô lập trong các hệ thống riêng biệt
+                        </li>
+                        <li data-vi="Phải chuyển đổi bối cảnh 5-7 lần"
+                            data-en="Required 5-7 context switches">
+                            Phải chuyển đổi bối cảnh 5-7 lần
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card cie">
+                    <h4 data-vi="✅ Hiện Tại" data-en="✅ Now">✅ Hiện Tại</h4>
+                    <ul class="feature-list">
+                        <li data-vi="Một hệ sinh thái thống nhất"
+                            data-en="One unified ecosystem">
+                            Một hệ sinh thái thống nhất
+                        </li>
+                        <li data-vi="Tất cả insights trong một workspace"
+                            data-en="All insights in one workspace">
+                            Tất cả insights trong một workspace
+                        </li>
+                        <li data-vi="Báo cáo hoàn chỉnh trong &lt;1 giây"
+                            data-en="Complete report in &lt;1 second">
+                            Báo cáo hoàn chỉnh trong &lt;1 giây
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION 2: ARCHITECTURE ============ -->
+        <section id="architecture">
+            <h2 data-vi="🏗️ Kiến Trúc Hệ Thống" data-en="🏗️ System Architecture">
+                🏗️ Kiến Trúc Hệ Thống
+            </h2>
+
+            <h3 data-vi="Thiết Kế Hai Tầng (Micro + Macro)" data-en="Two-Tier Design (Micro + Macro)">
+                Thiết Kế Hai Tầng (Micro + Macro)
+            </h3>
+
+            <div class="two-tier">
+                <div class="tier micro">
+                    <h4>🔵 IRIS-X (Tầng Microstructure)</h4>
+                    <p data-vi="Phân tích vi cấu trúc thị trường từ dữ liệu Comsec. Tính toán 34+ tín hiệu cấu trúc. Phân tích cân bằng danh mục (7-trục radar)."
+                       data-en="Microstructure analysis from Comsec data. Computes 34+ structural signals. Portfolio balance (7-axis radar).">
+                        Phân tích vi cấu trúc thị trường từ dữ liệu Comsec. Tính toán 34+ tín hiệu cấu trúc. Phân tích cân bằng danh mục (7-trục radar).
+                    </p>
+                    <div class="feature-list" style="margin-top: 15px;">
+                        <li data-vi="CSV nhập: Order Book, Trades, CoS"
+                            data-en="CSV Input: Order Book, Trades, CoS">
+                            CSV nhập: Order Book, Trades, CoS
+                        </li>
+                        <li data-vi="Tính toán song song 34+ tín hiệu"
+                            data-en="Parallel compute 34+ signals">
+                            Tính toán song song 34+ tín hiệu
+                        </li>
+                        <li data-vi="Xuất: Cân bằng danh mục, kế hoạch thực thi"
+                            data-en="Output: Portfolio balance, execution plans">
+                            Xuất: Cân bằng danh mục, kế hoạch thực thi
+                        </li>
+                    </div>
+                </div>
+
+                <div class="tier macro">
+                    <h4>🟠 CIE-X (Tầng Macro Intelligence)</h4>
+                    <p data-vi="Quét tin tức 6AM hàng ngày. Phát hiện giai đoạn thị trường (P1-P6). Mô hình hóa kịch bản xoay vòng."
+                       data-en="6AM daily news scan. Market phase detection (P1-P6). Rotation scenario modeling.">
+                        Quét tin tức 6AM hàng ngày. Phát hiện giai đoạn thị trường (P1-P6). Mô hình hóa kịch bản xoay vòng.
+                    </p>
+                    <div class="feature-list" style="margin-top: 15px;">
+                        <li data-vi="6AM: Tự động quét Scanlist + News"
+                            data-en="6AM: Auto-scan Scanlist + News">
+                            6AM: Tự động quét Scanlist + News
+                        </li>
+                        <li data-vi="AI Interpreter: Gemini/LLM giải mã bối cảnh"
+                            data-en="AI Interpreter: Gemini/LLM decode context">
+                            AI Interpreter: Gemini/LLM giải mã bối cảnh
+                        </li>
+                        <li data-vi="Xuất: CIE Report (P1-P6, rotation, news)"
+                            data-en="Output: CIE Report (P1-P6, rotation, news)">
+                            Xuất: CIE Report (P1-P6, rotation, news)
+                        </li>
+                    </div>
+                </div>
+            </div>
+
+            <h3 data-vi="Dòng Chảy Dữ Liệu Hoàn Chỉnh" data-en="Complete Data Flow">
+                Dòng Chảy Dữ Liệu Hoàn Chỉnh
+            </h3>
+
+            <div class="architecture-diagram">
+CSV (Comsec)
+    ↓
+[OB Engine | Trades Engine | CoS Engine]
+    ↓ (Parallel Processing)
+[Signal Computation - 34+ Metrics]
+    ↓
+[WHY Phase Engine - P1-P6 Detection]
+    ↓
+[CIE Report Generation]
+    ↓
+[Workspace Save/Export]
+            </div>
+        </section>
+
+        <!-- ============ SECTION 3: 5 ENGINES ============ -->
+        <section id="engines">
+            <h2 data-vi="⚙️ 5 Công Cụ Xử Lý Cốt Lõi" data-en="⚙️ 5 Core Processing Engines">
+                ⚙️ 5 Công Cụ Xử Lý Cốt Lõi
+            </h2>
+
+            <div class="grid-3">
+                <div class="card engine">
+                    <h4 data-vi="1️⃣ Order Book Engine" data-en="1️⃣ Order Book Engine">1️⃣ Order Book Engine</h4>
+                    <p data-vi="Phân tích độ sâu Order Book. Phát hiện imbalance. Nhận dạng áp lực cơ cấu."
+                       data-en="Analyzes OB depth, imbalance detection, pressure patterns.">
+                        Phân tích độ sâu Order Book. Phát hiện imbalance. Nhận dạng áp lực cơ cấu.
+                    </p>
+                </div>
+
+                <div class="card engine">
+                    <h4 data-vi="2️⃣ Trades Engine" data-en="2️⃣ Trades Engine">2️⃣ Trades Engine</h4>
+                    <p data-vi="Phát hiện dòng chảy. Tính toán tín hiệu cascade. Theo dõi dòng tiền tổ chức."
+                       data-en="Flow detection, cascade signals, institutional flow.">
+                        Phát hiện dòng chảy. Tính toán tín hiệu cascade. Theo dõi dòng tiền tổ chức.
+                    </p>
+                </div>
+
+                <div class="card engine">
+                    <h4 data-vi="3️⃣ CoS Engine" data-en="3️⃣ Course of Sales Engine">3️⃣ CoS Engine</h4>
+                    <p data-vi="Phân tích từng tick. Phát hiện momentum. Tạo hồ sơ khối lượng."
+                       data-en="Tick analysis, momentum detection, volume profiling.">
+                        Phân tích từng tick. Phát hiện momentum. Tạo hồ sơ khối lượng.
+                    </p>
+                </div>
+
+                <div class="card engine">
+                    <h4 data-vi="4️⃣ Signal Computation" data-en="4️⃣ Signal Computation">4️⃣ Signal Computation (34+)</h4>
+                    <p data-vi="Tính toán 34+ tín hiệu cấu trúc song song. DPA, Block Pressure, Cascade Intensity, v.v."
+                       data-en="Computes 34+ signals in parallel. DPA, BP, CI, and more.">
+                        Tính toán 34+ tín hiệu cấu trúc song song. DPA, Block Pressure, Cascade Intensity, v.v.
+                    </p>
+                </div>
+
+                <div class="card engine">
+                    <h4 data-vi="5️⃣ WHY Phase Engine" data-en="5️⃣ WHY Phase Engine">5️⃣ WHY Phase Engine (P1-P6)</h4>
+                    <p data-vi="Phát hiện giai đoạn thị trường. P1: Tích lũy, P2: Thoát hiểm, P3: Phân phối, P4: Phá vỡ, P5: Bỏ cuộc, P6: Gãy hệ thống."
+                       data-en="Market regime classification from P1 (Accumulation) to P6 (Systemic Fracture).">
+                        Phát hiện giai đoạn thị trường. P1: Tích lũy → P6: Gãy hệ thống.
+                    </p>
+                </div>
+
+                <div class="card engine">
+                    <h4 data-vi="📋 CIE Report" data-en="📋 CIE Report">📋 CIE Report Generation</h4>
+                    <p data-vi="Tạo báo cáo Cycle Intelligence hoàn chỉnh. Điểm giai đoạn, top 5 tín hiệu, macro, news, kế hoạch thực thi."
+                       data-en="Generates analyst-grade CIE Report with all insights.">
+                        Tạo báo cáo Cycle Intelligence hoàn chỉnh.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION 4: FEATURES ============ -->
+        <section id="features">
+            <h2 data-vi="✨ Các Tính Năng Chính (v12.0)" data-en="✨ Key Features (v12.0)">
+                ✨ Các Tính Năng Chính (v12.0)
+            </h2>
+
+            <div class="grid-2">
+                <div class="card iris">
+                    <h4 data-vi="📅 Định Dạng Sydney" data-en="📅 Sydney Datetime Format">📅 Định Dạng Sydney</h4>
+                    <p data-vi="Snapshot hiển thị theo múi giờ Sydney: DD/MM/YYYY, h:mm:ss AM/PM"
+                       data-en="Timestamps in Sydney timezone: 02/06/2026, 8:00:00 PM">
+                        Snapshot hiển thị theo múi giờ Sydney: DD/MM/YYYY, h:mm:ss AM/PM
+                    </p>
+                </div>
+
+                <div class="card iris">
+                    <h4 data-vi="🎯 Các Phần Mở Rộng" data-en="🎯 Expandable Sections">🎯 Các Phần Mở Rộng</h4>
+                    <p data-vi="📰 Show News, 🔍 Show Scan (ẩn theo mặc định, bấm để mở rộng)"
+                       data-en="📰 News, 🔍 Scan (hidden by default, expandable)">
+                        📰 Show News, 🔍 Show Scan (ẩn theo mặc định, bấm để mở rộng)
+                    </p>
+                </div>
+
+                <div class="card iris">
+                    <h4 data-vi="💾 Lưu Trữ Dữ Liệu" data-en="💾 Persistence">💾 Lưu Trữ Dữ Liệu</h4>
+                    <p data-vi="Auto-save mỗi 30s. Export JSON. Import trước đó - hoàn toàn tái tạo được."
+                       data-en="Auto-save every 30s, export, import previous - full reproducibility.">
+                        Auto-save mỗi 30s. Export JSON. Import trước đó - hoàn toàn tái tạo được.
+                    </p>
+                </div>
+
+                <div class="card iris">
+                    <h4 data-vi="📊 Mở Rộng Danh Mục" data-en="📊 Portfolio Expansion">📊 Mở Rộng Danh Mục</h4>
+                    <p data-vi="Không có giới hạn số cổ phiếu. 1 cổ phiếu hay 500 cổ phiếu, cùng quy trình."
+                       data-en="Unlimited stocks. 1 stock or 500 stocks, same workflow.">
+                        Không có giới hạn số cổ phiếu. 1 cổ phiếu hay 500 cổ phiếu, cùng quy trình.
+                    </p>
+                </div>
+
+                <div class="card iris">
+                    <h4 data-vi="🔧 Thanh Công Cụ CIE" data-en="🔧 CIE Toolbar">🔧 Thanh Công Cụ CIE (4 Nút)</h4>
+                    <p data-vi="1. Import json1.json | 2. Expand Workspace | 3. Export Report | 4. Import CIE File"
+                       data-en="Import json1 | Expand Workspace | Export Report | Import CIE File">
+                        1. Import json1.json | 2. Expand Workspace | 3. Export Report | 4. Import CIE File
+                    </p>
+                </div>
+
+                <div class="card iris">
+                    <h4 data-vi="✍️ Kiểu Chữ Chuyên Nghiệp" data-en="✍️ Professional Typography">✍️ Kiểu Chữ Chuyên Nghiệp</h4>
+                    <p data-vi="Nhãn in đậm, màu tối (#1a1a1a), font-weight 600-700 - dễ đọc."
+                       data-en="Bold labels, dark text, high contrast readability.">
+                        Nhãn in đậm, màu tối (#1a1a1a), font-weight 600-700 - dễ đọc.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION 5: SCREENS ============ -->
+        <section id="screens">
+            <h2 data-vi="📱 Giao Diện Người Dùng" data-en="📱 User Interface">
+                📱 Giao Diện Người Dùng
+            </h2>
+
+            <p data-vi="IRIS-X có 5 màn hình chính. Dưới đây là mô tả và hình ảnh:"
+               data-en="IRIS-X features 5 main screens. Below are descriptions and screenshots:">
+                IRIS-X có 5 màn hình chính. Dưới đây là mô tả và hình ảnh:
+            </p>
+
+            <h3 data-vi="📊 Tất Cả Các Màn Hình" data-en="📊 All Screens">
+                📊 Tất Cả Các Màn Hình
+            </h3>
+
+            <div class="image-section">
+                <p style="font-weight: bold; margin-bottom: 15px;">
+                    <span data-vi="[Screen1.jpeg - CIE Report]"
+                          data-en="[Screen1.jpeg - CIE Report]">[Screen1.jpeg - CIE Report]</span>
+                </p>
+                <p class="image-caption" data-vi="Màn hình báo cáo CIE với phase P6, top 5 signals, news, scan list"
+                                         data-en="CIE Report screen with P6 phase, top 5 signals, news, scan list">
+                    Màn hình báo cáo CIE với phase P6, top 5 signals, news, scan list
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card iris">
+                    <h4 data-vi="1. Portfolio Screen" data-en="1. Portfolio Screen">1. Portfolio Screen</h4>
+                    <p data-vi="Xem và quản lý danh mục. Bảng nắm giữ, biểu đồ phân bổ."
+                       data-en="View and manage portfolio. Holdings table, allocation chart.">
+                        Xem và quản lý danh mục. Bảng nắm giữ, biểu đồ phân bổ.
+                    </p>
+                </div>
+
+                <div class="card iris">
+                    <h4 data-vi="2. Order Book Screen" data-en="2. Order Book Screen">2. Order Book Screen</h4>
+                    <p data-vi="Phân tích Order Book. Bảng độ sâu Bid/Ask. Phân tích Venue Split."
+                       data-en="Analyze order book. Bid/ask depth table. Venue split analysis.">
+                        Phân tích Order Book. Bảng độ sâu Bid/Ask. Phân tích Venue Split.
+                    </p>
+                </div>
+
+                <div class="card iris">
+                    <h4 data-vi="3. Trading CSV Screen" data-en="3. Trading CSV Screen">3. Trading CSV Screen</h4>
+                    <p data-vi="Phân tích lịch sử giao dịch. Phát hiện dòng chảy. Thống kê dòng chảy."
+                       data-en="Analyze trade history. Flow detection. Flow statistics.">
+                        Phân tích lịch sử giao dịch. Phát hiện dòng chảy. Thống kê dòng chảy.
+                    </p>
+                </div>
+
+                <div class="card iris">
+                    <h4 data-vi="4. Course of Sales Screen" data-en="4. CoS Screen">4. Course of Sales Screen</h4>
+                    <p data-vi="Phân tích từng tick. Biểu đồ tick. Hồ sơ khối lượng. Tín hiệu Momentum."
+                       data-en="Tick-by-tick analysis. Tick chart. Volume profile. Momentum signals.">
+                        Phân tích từng tick. Biểu đồ tick. Hồ sơ khối lượng. Tín hiệu Momentum.
+                    </p>
+                </div>
+
+                <div class="card iris" style="grid-column: span 2;">
+                    <h4 data-vi="5. CIE Report Screen (Trung Tâm Chính)" data-en="5. CIE Report (Main Hub)">5. CIE Report Screen (Trung Tâm Chính)</h4>
+                    <p data-vi="Báo cáo CIE hoàn chỉnh: Snapshot (Sydney time), Phase Probability (P1-P6), Best-Core Signal, Top 5 Signals (mở rộng), News List (mở rộng), Scan List (mở rộng), Macro Markets, Domain Activity, Execution Plans."
+                       data-en="Complete CIE Report: Snapshot (Sydney time), Phase Probability (P1-P6), Best-Core Signal, Top 5 Signals, News List, Scan List, Macro Markets, Execution Plans.">
+                        Báo cáo CIE hoàn chỉnh: Snapshot (Sydney time), Phase Probability (P1-P6), Best-Core Signal, Top 5 Signals, News List, Scan List, Macro Markets, Execution Plans.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION 6: GLOSSARY ============ -->
+        <section id="glossary">
+            <h2 data-vi="📚 Từ Điển & Thuật Ngữ" data-en="📚 Glossary & Terminology">
+                📚 Từ Điển & Thuật Ngữ
+            </h2>
+
+            <h3 data-vi="Các Giai Đoạn Thị Trường (P1-P6)" data-en="Market Phases (P1-P6)">
+                Các Giai Đoạn Thị Trường (P1-P6)
+            </h3>
+
+            <div class="phase-grid">
+                <div class="phase-box p1">P1: Tích Lũy</div>
+                <div class="phase-box p2">P2: Thoát Hiểm</div>
+                <div class="phase-box p3">P3: Phân Phối</div>
+                <div class="phase-box p4">P4: Phá Vỡ</div>
+                <div class="phase-box p5">P5: Bỏ Cuộc</div>
+                <div class="phase-box p6">P6: Gãy Hệ Thống</div>
+            </div>
+
+            <h3 data-vi="34 Tín Hiệu Cấu Trúc" data-en="34 Structural Signals">
+                34 Tín Hiệu Cấu Trúc
+            </h3>
+
+            <table>
+                <tr>
+                    <th data-vi="Danh Mục" data-en="Category">Danh Mục</th>
+                    <th data-vi="Nguồn Dữ Liệu" data-en="Data Source">Nguồn Dữ Liệu</th>
+                    <th data-vi="Mục Đích" data-en="Purpose">Mục Đích</th>
+                </tr>
+                <tr>
+                    <td data-vi="Tín hiệu dòng chảy (5)" data-en="Flow signals (5)">Tín hiệu dòng chảy (5)</td>
+                    <td>Trades CSV</td>
+                    <td data-vi="Phát hiện dòng chảy tổ chức" data-en="Detect institutional flow">Phát hiện dòng chảy tổ chức</td>
+                </tr>
+                <tr>
+                    <td data-vi="Tín hiệu khối lượng (5)" data-en="Volume signals (5)">Tín hiệu khối lượng (5)</td>
+                    <td>Order Book CSV</td>
+                    <td data-vi="Xác định áp lực & imbalance" data-en="Identify pressure & imbalance">Xác định áp lực & imbalance</td>
+                </tr>
+                <tr>
+                    <td data-vi="Tín hiệu Momentum (5)" data-en="Momentum signals (5)">Tín hiệu Momentum (5)</td>
+                    <td>Course of Sales</td>
+                    <td data-vi="Phát hiện gia tốc/giảm tốc" data-en="Detect acceleration/deceleration">Phát hiện gia tốc/giảm tốc</td>
+                </tr>
+                <tr>
+                    <td data-vi="Tín hiệu Microstructure (5)" data-en="Microstructure (5)">Tín hiệu Microstructure (5)</td>
+                    <td data-vi="Tất cả công cụ" data-en="All engines">Tất cả công cụ</td>
+                    <td data-vi="Động lực dòng lệnh" data-en="Order flow dynamics">Động lực dòng lệnh</td>
+                </tr>
+                <tr>
+                    <td data-vi="Tín hiệu Composite (14)" data-en="Composite signals (14)">Tín hiệu Composite (14)</td>
+                    <td data-vi="Nhiều nguồn" data-en="Multiple sources">Nhiều nguồn</td>
+                    <td data-vi="Insights giữa các công cụ" data-en="Cross-engine insights">Insights giữa các công cụ</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- ============ SECTION 7: FAQ ============ -->
+        <section id="faq">
+            <h2 data-vi="❓ Câu Hỏi Thường Gặp" data-en="❓ Frequently Asked Questions">
+                ❓ Câu Hỏi Thường Gặp
+            </h2>
+
+            <div class="card iris">
+                <h4 data-vi="Q: IRIS-X có phải real-time không?" data-en="Q: Is IRIS-X real-time?">
+                    Q: IRIS-X có phải real-time không?
+                </h4>
+                <p data-vi="Không. IRIS-X dựa trên CSV import. Bạn xuất dữ liệu Comsec, nhập vào IRIS-X, và phân tích. Lợi ích: không cần phí streaming, không cần API phức tạp."
+                   data-en="No. CSV-import based. Export Comsec data, import into IRIS-X, analyze. Benefits: no streaming fees, no API complexity.">
+                    Không. IRIS-X dựa trên CSV import. Bạn xuất dữ liệu Comsec, nhập vào IRIS-X, và phân tích. Lợi ích: không cần phí streaming, không cần API phức tạp.
+                </p>
+            </div>
+
+            <div class="card iris">
+                <h4 data-vi="Q: Có thể phân tích bao nhiêu cổ phiếu?" data-en="Q: How many stocks can I analyze?">
+                    Q: Có thể phân tích bao nhiêu cổ phiếu?
+                </h4>
+                <p data-vi="Không giới hạn. Workspace mở rộng tự động cho mỗi cổ phiếu — dù 1 hay 500, cùng quy trình."
+                   data-en="Unlimited. Auto-expands per stock — 1 or 500, same workflow.">
+                    Không giới hạn. Workspace mở rộng tự động cho mỗi cổ phiếu — dù 1 hay 500, cùng quy trình.
+                </p>
+            </div>
+
+            <div class="card iris">
+                <h4 data-vi="Q: Dữ liệu đến từ đâu?" data-en="Q: Where does data come from?">
+                    Q: Dữ liệu đến từ đâu?
+                </h4>
+                <p data-vi="Comsec (nhà môi giới lớn nhất Úc). Bạn xuất CSV từ Comsec (order book, trades, course of sales) và nhập vào IRIS-X."
+                   data-en="Comsec (Australia's largest broker). Export CSV, import into IRIS-X.">
+                    Comsec (nhà môi giới lớn nhất Úc). Bạn xuất CSV từ Comsec (order book, trades, course of sales) và nhập vào IRIS-X.
+                </p>
+            </div>
+
+            <div class="card iris">
+                <h4 data-vi="Q: Có thể lưu & tải lại phân tích không?" data-en="Q: Can I save & reload analysis?">
+                    Q: Có thể lưu & tải lại phân tích không?
+                </h4>
+                <p data-vi="Có. Auto-save mỗi 30s. Export JSON. Import trước đó — hoàn toàn tái tạo được."
+                   data-en="Yes. Auto-save every 30s, export, import previous — full reproducibility.">
+                    Có. Auto-save mỗi 30s. Export JSON. Import trước đó — hoàn toàn tái tạo được.
+                </p>
+            </div>
+
+            <div class="card iris">
+                <h4 data-vi="Q: 34 tín hiệu có gì đặc biệt?" data-en="Q: What's special about 34 signals?">
+                    Q: 34 tín hiệu có gì đặc biệt?
+                </h4>
+                <p data-vi="Hầu hết trader dùng 2-3 chỉ báo (RSI, MACD, MA). IRIS-X tính 34 mẫu cấu trúc: Dark Pool Activity, Block Pressure, Cascade Intensity, Venue Flow, Volatility Regime, v.v. Nhiều dữ liệu = hình ảnh rõ hơn."
+                   data-en="Most traders use 2-3 indicators. IRIS-X computes 34 patterns: DPA, BP, CI, VF, VR, and more. More data = clearer picture.">
+                    Hầu hết trader dùng 2-3 chỉ báo (RSI, MACD, MA). IRIS-X tính 34 mẫu cấu trúc: Dark Pool Activity, Block Pressure, Cascade Intensity, Venue Flow, Volatility Regime, v.v. Nhiều dữ liệu = hình ảnh rõ hơn.
+                </p>
+            </div>
+
+            <div class="card iris">
+                <h4 data-vi="Q: Có chi phí không?" data-en="Q: Is there a cost?">
+                    Q: Có chi phí không?
+                </h4>
+                <p data-vi="Miễn phí. IRIS-X là web app độc lập. Không API, không subscription, không lock-in với nhà cung cấp."
+                   data-en="Free. Standalone web app. No APIs, no subscriptions, no vendor lock-in.">
+                    Miễn phí. IRIS-X là web app độc lập. Không API, không subscription, không lock-in với nhà cung cấp.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============ FOOTER ============ -->
+        <footer>
+            <h3 data-vi="IRIS-X v12.0 — Hệ Sinh Thái Giao Dịch Thống Nhất"
+                data-en="IRIS-X v12.0 — Unified Trading Ecosystem">
+                IRIS-X v12.0 — Hệ Sinh Thái Giao Dịch Thống Nhất
+            </h3>
+            <p data-vi="Gộp 10 năm nghiên cứu trading vào một nền tảng duy nhất."
+               data-en="Consolidating 10 years of trading research into one platform.">
+                Gộp 10 năm nghiên cứu trading vào một nền tảng duy nhất.
+            </p>
+            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.9;">
+                <span data-vi="Phiên bản: v12.0 | Trạng thái: Sản xuất | Ngày tạo: 03/06/2026"
+                      data-en="Version: v12.0 | Status: Production | Created: 06/03/2026">
+                    Phiên bản: v12.0 | Trạng thái: Sản xuất | Ngày tạo: 03/06/2026
+                </span>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        let currentLanguage = 'vi';
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update all text content
+            document.querySelectorAll('[data-vi]').forEach(el => {
+                if (lang === 'vi') {
+                    el.textContent = el.getAttribute('data-vi');
+                } else {
+                    el.textContent = el.getAttribute('data-en') || el.textContent;
+                }
+            });
+        }
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update nav buttons
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>

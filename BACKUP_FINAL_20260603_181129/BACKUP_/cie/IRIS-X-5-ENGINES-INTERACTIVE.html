@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRIS-X: 5 Core Processing Engines - Interactive Diagram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            color: #0066cc;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            color: #0066cc;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        /* Flow Diagram */
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        /* Stage Container */
+        .stage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Engine Box */
+        .engine-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            min-width: 300px;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .engine-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 102, 204, 0.25);
+        }
+
+        .engine-box.input {
+            border-left-color: #ff6b6b;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+        }
+
+        .engine-box.engine-1 {
+            border-left-color: #0066cc;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e0e8ff 100%);
+        }
+
+        .engine-box.engine-2 {
+            border-left-color: #00aa00;
+            background: linear-gradient(135deg, #f0fff0 0%, #e0ffe0 100%);
+        }
+
+        .engine-box.engine-3 {
+            border-left-color: #ff9900;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8d0 100%);
+        }
+
+        .engine-box.engine-4 {
+            border-left-color: #9933ff;
+            background: linear-gradient(135deg, #faf0ff 0%, #f0e0ff 100%);
+        }
+
+        .engine-box.engine-5 {
+            border-left-color: #ff0066;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe0e8 100%);
+        }
+
+        .engine-box.output {
+            border-left-color: #00aa00;
+            background: linear-gradient(135deg, #f0fff0 0%, #d0ffe0 100%);
+        }
+
+        .engine-box.export {
+            border-left-color: #666;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+
+        .engine-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .engine-icon {
+            font-size: 1.5em;
+        }
+
+        .engine-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .engine-items li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #333;
+            font-size: 0.95em;
+        }
+
+        .engine-items li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: inherit;
+        }
+
+        /* Arrow */
+        .arrow {
+            display: flex;
+            justify-content: center;
+            font-size: 2em;
+            color: #0066cc;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 2px solid #ddd;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+
+        /* Summary Section */
+        .summary {
+            margin-top: 50px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary h2 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .summary-item {
+            padding: 15px;
+            background: #f8faff;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .summary-item strong {
+            color: #0066cc;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .engine-box {
+                min-width: 100%;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Legend */
+        .legend {
+            margin-top: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend h3 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .tooltip {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #0066cc;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔧 IRIS-X: 5 Core Processing Engines</h1>
+            <p class="subtitle">From CSV Data to Unified Intelligence</p>
+            <p class="tagline">Interactive Architecture Diagram</p>
+        </header>
+
+        <!-- Flow Diagram -->
+        <div class="flow-diagram">
+            <!-- Stage 1: Input -->
+            <div class="stage">
+                <div class="engine-box input">
+                    <div class="engine-title">
+                        <span class="engine-icon">📥</span>
+                        CSV Import (Comsec Data)
+                    </div>
+                    <ul class="engine-items">
+                        <li><strong>Order Book</strong> — Bid/ask depth levels</li>
+                        <li><strong>Trades</strong> — Executed trade history</li>
+                        <li><strong>Course of Sales</strong> — Tick-by-tick prices</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <!-- Stage 2: Engine 1 (Order Book) -->
+            <div class="stage">
+                <div class="engine-box engine-1">
+                    <div class="engine-title">
+                        <span class="engine-icon">📊</span>
+                        OB (Order Book Engine)
+                    </div>
+                    <ul class="engine-items">
+                        <li>Depth analysis — Bid/ask imbalance</li>
+                        <li>Imbalance detection — Pressure metrics</li>
+                        <li>Pressure patterns — Support/resistance signals</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <!-- Stage 3: Engine 2 (Trades) -->
+            <div class="stage">
+                <div class="engine-box engine-2">
+                    <div class="engine-title">
+                        <span class="engine-icon">🔄</span>
+                        Trades Engine
+                    </div>
+                    <ul class="engine-items">
+                        <li>Flow detection — Institutional signatures</li>
+                        <li>Cascade signals — Trade clustering patterns</li>
+                        <li>Institutional flow — Large buyer/seller tracking</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <!-- Stage 4: Engine 3 (Course of Sales) -->
+            <div class="stage">
+                <div class="engine-box engine-3">
+                    <div class="engine-title">
+                        <span class="engine-icon">📈</span>
+                        CoS (Course of Sales)
+                    </div>
+                    <ul class="engine-items">
+                        <li>Tick analysis — Individual trade processing</li>
+                        <li>Momentum detection — Price acceleration signals</li>
+                        <li>Volume profile — Distribution at price levels</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <!-- Stage 5: Engine 4 (Signal Computation) -->
+            <div class="stage">
+                <div class="engine-box engine-4">
+                    <div class="engine-title">
+                        <span class="engine-icon">⚡</span>
+                        Signal Computation (34+)
+                    </div>
+                    <ul class="engine-items">
+                        <li><strong>Dark Pool Activity</strong> — DPA index</li>
+                        <li><strong>Block Pressure</strong> — BP metric</li>
+                        <li><strong>Cascade Intensity</strong> — CI score</li>
+                        <li><strong>+ 31 more signals</strong> — Venue flow, volatility, etc.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <!-- Stage 6: Engine 5 (WHY Phase) -->
+            <div class="stage">
+                <div class="engine-box engine-5">
+                    <div class="engine-title">
+                        <span class="engine-icon">🎯</span>
+                        WHY Phase Engine (P1-P6)
+                    </div>
+                    <ul class="engine-items">
+                        <li><strong>P1:</strong> Accumulation — Institutional buying phase</li>
+                        <li><strong>P2:</strong> Breakout — Momentum acceleration</li>
+                        <li><strong>P3:</strong> Distribution — Profit-taking begins</li>
+                        <li><strong>P4:</strong> Breakdown — Momentum reversal</li>
+                        <li><strong>P5:</strong> Capitulation — Panic selling pressure</li>
+                        <li><strong>P6:</strong> Systemic Fracture — Structural collapse</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <!-- Stage 7: Output -->
+            <div class="stage">
+                <div class="engine-box output">
+                    <div class="engine-title">
+                        <span class="engine-icon">📋</span>
+                        CIE Report Generation
+                    </div>
+                    <ul class="engine-items">
+                        <li>Phase scores — Probability distribution (P1-P6)</li>
+                        <li>Top 5 signals — Ranked by impact/cascade/confidence</li>
+                        <li>Macro markets — Commodity, FX, indices context</li>
+                        <li>News & Rotation — Leadership/laggard tracking</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <!-- Stage 8: Export -->
+            <div class="stage">
+                <div class="engine-box export">
+                    <div class="engine-title">
+                        <span class="engine-icon">💾</span>
+                        Workspace Save/Export
+                    </div>
+                    <ul class="engine-items">
+                        <li>Auto-save to localStorage (every 30s)</li>
+                        <li>Export as JSON (full session persistence)</li>
+                        <li>Import previous analysis (reproducibility)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Processing Engines</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">34+</div>
+                <div class="stat-label">Structural Signals</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Market Phases (P1-P6)</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">&lt;1s</div>
+                <div class="stat-label">Report Generation Time</div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary">
+            <h2>🔍 How It Works Together</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <strong>🎯 Integration</strong>
+                    <p>All 5 engines run in parallel. CSV input flows through each stage, generating insights at every layer.</p>
+                </div>
+                <div class="summary-item">
+                    <strong>⚡ Speed</strong>
+                    <p>From CSV import to final CIE Report in under 1 second. No API delays, no streaming fees.</p>
+                </div>
+                <div class="summary-item">
+                    <strong>📊 Scale</strong>
+                    <p>Handles 1 stock or 500 stocks. Workspace auto-expands, each engine computes in parallel.</p>
+                </div>
+                <div class="summary-item">
+                    <strong>💡 Intelligence</strong>
+                    <p>34+ signals, 6-phase regime detection, macro context, and execution plans — all unified.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <h3>📌 Engine Colors & Meanings</h3>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff6b6b;"></div>
+                    <span><strong>Input:</strong> Data source</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #0066cc;"></div>
+                    <span><strong>Engine 1:</strong> Order Book</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #00aa00;"></div>
+                    <span><strong>Engine 2:</strong> Trades</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff9900;"></div>
+                    <span><strong>Engine 3:</strong> Course of Sales</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #9933ff;"></div>
+                    <span><strong>Engine 4:</strong> Signals</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff0066;"></div>
+                    <span><strong>Engine 5:</strong> Phase Detection</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #00aa00;"></div>
+                    <span><strong>Output:</strong> CIE Report</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #666;"></div>
+                    <span><strong>Export:</strong> Persistence</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Flow Summary -->
+        <div class="summary" style="margin-top: 30px; background: linear-gradient(135deg, #f0f4ff 0%, #e0e8ff 100%); border-left: 5px solid #0066cc;">
+            <h2 style="margin-bottom: 15px;">📈 Complete Data Flow</h2>
+            <p style="line-height: 1.8; color: #333; font-size: 0.95em;">
+                <strong>CSV (Comsec)</strong>
+                → <strong>OB Engine</strong> (bid/ask analysis)
+                → <strong>Trades Engine</strong> (flow detection)
+                → <strong>CoS Engine</strong> (tick analysis)
+                → <strong>Signal Stack</strong> (34 metrics computed)
+                → <strong>Phase Engine</strong> (P1-P6 classification)
+                → <strong>CIE Report</strong> (analyst-grade output)
+                → <strong>Workspace</strong> (persistent storage)
+            </p>
+        </div>
+
+        <footer>
+            <p>IRIS-X v12.0 — Intelligent Real-time Insight System (eXtended)</p>
+            <p>5 Core Processing Engines Powering Unified Market Intelligence</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                Consolidating 10 years of trading research into one production-ready platform
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

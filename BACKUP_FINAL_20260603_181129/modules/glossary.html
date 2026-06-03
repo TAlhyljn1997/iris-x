@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!--
+RI‑ECOSYS™ PROPRIETARY CODE
+© 2014–2026 RI‑Ecosys™ | All Rights Reserved
+IRIS-X™ System Version 12.0
+Interactive Glossary Module (163 terms)
+Unauthorized reproduction, distribution, or AI training prohibited.
+Contact: ba@ri-ecosys.com for licensing inquiries.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>IRIS-X™ Glossary — 163 Terms & Definitions</title>
+  <meta name="description" content="IRIS-X™ v12.0 interactive glossary with 163 terms covering core concepts, variables, constraints, and system architecture.">
+  <meta name="keywords" content="glossary, IRIS-X, terms, definitions, trading, microstructure">
+  <meta name="copyright" content="© 2014–2026 RI‑Ecosys™">
+
+  <link rel="stylesheet" href="../css/irisx-docs.css">
+  <script defer src="../js/lang-toggle.js"></script>
+  <script defer src="../js/iris-glossary.js"></script>
+  <script defer src="js/glossary-init.js"></script>
+</head>
+<body data-lang="en">
+  <!-- Header -->
+  <header class="ix-header">
+    <div class="ix-header-content">
+      <div class="ix-logo">
+        <a href="../index.html" style="color: white; text-decoration: none;">IRIS-X™</a>
+      </div>
+      <div class="ix-header-right">
+        <p class="ix-tagline t-en">Interactive Glossary Module</p>
+        <p class="ix-tagline t-vi">Module Từ Điển Tương Tác</p>
+      </div>
+      <div class="ix-lang-switch">
+        <button id="lang-en" class="active">EN</button>
+        <button id="lang-vi">VI</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="ix-main">
+    <!-- Title -->
+    <section class="ix-hero">
+      <h1 class="t-en">IRIS-X™ Glossary</h1>
+      <h1 class="t-vi">Từ Điển IRIS-X™</h1>
+
+      <p class="t-en">
+        Search and filter 163 terms covering IRIS-X™ v12.0 framework, concepts, metrics, and system architecture.
+      </p>
+      <p class="t-vi">
+        Tìm kiếm và lọc 163 thuật ngữ về framework IRIS-X™ v12.0, khái niệm, số liệu và kiến trúc hệ thống.
+      </p>
+    </section>
+
+    <!-- Glossary Container -->
+    <section class="ix-glossary-container">
+      <!-- Filters -->
+      <div class="ix-glossary-filters">
+        <!-- Search -->
+        <div class="ix-glossary-search">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by term name, definition, or example..."
+          >
+        </div>
+
+        <!-- Category Filter -->
+        <div class="ix-glossary-filter-group">
+          <span class="ix-glossary-filter-label t-en">Category:</span>
+          <span class="ix-glossary-filter-label t-vi">Danh Mục:</span>
+          <button class="ix-glossary-filter-btn active" data-type="all">
+            <span class="t-en">All</span>
+            <span class="t-vi">Tất Cả</span>
+          </button>
+          <button class="ix-glossary-filter-btn" data-type="core">Core</button>
+          <button class="ix-glossary-filter-btn" data-type="variables">Variables</button>
+          <button class="ix-glossary-filter-btn" data-type="hyperparameters">Parameters</button>
+          <button class="ix-glossary-filter-btn" data-type="constraints">Constraints</button>
+          <button class="ix-glossary-filter-btn" data-type="output">Output</button>
+          <button class="ix-glossary-filter-btn" data-type="cie">CIE-X™</button>
+          <button class="ix-glossary-filter-btn" data-type="phase">Phase</button>
+        </div>
+
+        <!-- Domain Filter -->
+        <div class="ix-glossary-filter-group">
+          <span class="ix-glossary-filter-label t-en">Domain:</span>
+          <span class="ix-glossary-filter-label t-vi">Lĩnh Vực:</span>
+          <button class="ix-glossary-filter-btn active" data-domain="all">
+            <span class="t-en">All</span>
+            <span class="t-vi">Tất Cả</span>
+          </button>
+          <button class="ix-glossary-filter-btn" data-domain="trading">Trading</button>
+          <button class="ix-glossary-filter-btn" data-domain="portfolio">Portfolio</button>
+          <button class="ix-glossary-filter-btn" data-domain="risk">Risk</button>
+          <button class="ix-glossary-filter-btn" data-domain="market">Market</button>
+          <button class="ix-glossary-filter-btn" data-domain="system">System</button>
+          <button class="ix-glossary-filter-btn" data-domain="governance">Governance</button>
+        </div>
+
+        <!-- Reset Button -->
+        <div style="margin-top: 16px;">
+          <button class="ix-glossary-reset-btn" id="resetBtn">
+            <span class="t-en">Reset Filters</span>
+            <span class="t-vi">Đặt Lại Bộ Lọc</span>
+          </button>
+        </div>
+
+        <!-- Counter -->
+        <div class="ix-glossary-counter" id="showingCount">
+          <span class="t-en">Showing: 0 of 0 terms</span>
+          <span class="t-vi">Hiển Thị: 0 của 0 thuật ngữ</span>
+        </div>
+      </div>
+
+      <!-- Terms Grid -->
+      <div class="ix-glossary-terms" id="termsContainer">
+        <div style="text-align: center; padding: 40px; grid-column: 1/-1; color: #999;">
+          <span class="t-en">Loading glossary...</span>
+          <span class="t-vi">Đang tải từ điển...</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="ix-footer">
+    <div class="footer-content">
+      <p class="t-en">© 2014–2026 RI‑Ecosys™ Microstructure Balance Model. All rights reserved.</p>
+      <p class="t-vi">© 2014–2026 RI‑Ecosys™ Mô Hình Cân Bằng Microstructure. Bảo lưu mọi quyền.</p>
+
+      <p class="t-en">
+        <strong>Restrictions:</strong> Unauthorized commercial use and AI training strictly prohibited.
+        <a href="mailto:ba@ri-ecosys.com">ba@ri-ecosys.com</a> for licensing inquiries.
+      </p>
+      <p class="t-vi">
+        <strong>Hạn Chế:</strong> Nghiêm cấm sử dụng thương mại trái phép và dùng để huấn luyện AI.
+        <a href="mailto:ba@ri-ecosys.com">ba@ri-ecosys.com</a> cho yêu cầu cấp phép.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

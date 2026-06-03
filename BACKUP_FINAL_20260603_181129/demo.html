@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRIS-X™ v12.0 — Demo Panel | 8 Screens Complete</title>
+  <meta name="description" content="Complete IRIS-X v12.0 demonstration with 8 screens: Order Book, Historical, Tape, Flow, Micro, Balance Laws, Modules, CIE Report. Includes theory, term explanations, and PLS examples.">
+  <meta name="author" content="Ba P. Tran">
+  <meta name="copyright" content="© 2014–2026 RI‑Ecosys™">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --bg-alt: #ffffff;
+      --primary: #1f4f8f;
+      --primary-dark: #0a3a6a;
+      --primary-soft: #e3ecfb;
+      --accent: #f59e0b;
+      --border: #d1d5db;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --card-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      --hover-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --bg-alt: #1e293b;
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --primary-soft: #1e3a5f;
+      --border: #334155;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      transition: background 0.3s, color 0.3s;
+    }
+    /* Header */
+    .demo-header {
+      background: linear-gradient(135deg, #0f172a, #1f2937);
+      color: #f9fafb;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .demo-header h1 { font-size: 1.4rem; letter-spacing: -0.02em; }
+    .demo-header h1 span { color: #60a5fa; }
+    .header-controls { display: flex; gap: 12px; align-items: center; }
+    .lang-toggle, .theme-toggle {
+      display: flex;
+      gap: 4px;
+      background: #334155;
+      border-radius: 40px;
+      padding: 4px;
+    }
+    .lang-toggle button, .theme-toggle button {
+      background: transparent;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 32px;
+      color: #e2e8f0;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: 0.2s;
+    }
+    .lang-toggle button.active, .theme-toggle button.active {
+      background: #3b82f6;
+      color: white;
+    }
+    /* Main layout */
+    .demo-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+    /* TOC */
+    .toc {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      position: sticky;
+      top: 80px;
+      z-index: 90;
+    }
+    .toc h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 10px; }
+    .toc-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .toc-btn {
+      background: var(--primary-soft);
+      border: none;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      color: var(--primary);
+      transition: 0.2s;
+    }
+    .toc-btn:hover { background: var(--primary); color: white; }
+    /* Screen sections */
+    .screen-section {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      margin-bottom: 32px;
+      padding: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      scroll-margin-top: 100px;
+    }
+    .screen-section:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--hover-shadow);
+    }
+    .screen-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      border-left: 4px solid var(--accent);
+      padding-left: 16px;
+    }
+    .screen-img {
+      width: 100%;
+      border-radius: 12px;
+      margin: 16px 0;
+      border: 1px solid var(--border);
+    }
+    .theory-block, .terms-block, .pls-block {
+      margin: 16px 0;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: var(--bg);
+    }
+    .theory-block h4, .terms-block h4, .pls-block h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
+    .math {
+      background: #1e1e2e;
+      color: #e2e8f0;
+      padding: 12px 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 12px 0;
+      font-family: monospace;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+    .return-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: 0.2s;
+    }
+    .return-btn:hover { background: var(--primary-dark); transform: scale(1.02); }
+    footer {
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      margin-top: 24px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    @media (max-width: 768px) {
+      .demo-header { flex-direction: column; text-align: center; }
+      .screen-section { padding: 16px; }
+      .screen-title { font-size: 1.2rem; }
+    }
+    .fade-in { animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .en-content { display: block; }
+    .vi-content { display: none; }
+    body.lang-vi .en-content { display: none; }
+    body.lang-vi .vi-content { display: block; }
+  </style>
+</head>
+<body class="lang-en">
+<header class="demo-header">
+  <h1>🔬 IRIS‑X™ <span>v12.0</span> — Microstructure Balance Model Demo</h1>
+  <div class="header-controls">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="vi">VI</button>
+    </div>
+    <div class="theme-toggle">
+      <button class="theme-btn active" data-theme="light">☀️</button>
+      <button class="theme-btn" data-theme="dark">🌙</button>
+    </div>
+  </div>
+</header>
+
+<div class="demo-container">
+  <!-- Table of Contents -->
+  <div class="toc">
+    <h3>📑 ON THIS PAGE</h3>
+    <div class="toc-grid">
+      <button class="toc-btn" data-target="screen1">1. Order Book</button>
+      <button class="toc-btn" data-target="screen2">2. Historical</button>
+      <button class="toc-btn" data-target="screen3">3. Tape Engine</button>
+      <button class="toc-btn" data-target="screen4">4. Flow Engine</button>
+      <button class="toc-btn" data-target="screen5">5. Microstructure</button>
+      <button class="toc-btn" data-target="screen6">6. Balance Laws</button>
+      <button class="toc-btn" data-target="screen7">7. Modules</button>
+      <button class="toc-btn" data-target="screen8">8. CIE Report</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: ORDER BOOK DUMP -->
+  <section id="screen1" class="screen-section fade-in">
+    <h2 class="screen-title"><span class="badge">Screen 1</span> Order Book Dump — Market Depth Analysis</h2>
+    <img src="images/Screen1.jpeg" class="screen-img" alt="Order Book Dump PLS" onerror="this.src='https://placehold.co/800x400/1f4f8f/white?text=Screen1-OrderBook'">
+    <div class="theory-block">
+      <h4>📖 THEORY</h4>
+      <div class="en-content">The Order Book Engine captures bid/ask depth, measuring Liquidity Law and Authority Law. Depth imbalance reveals real support/resistance. When bid volume > ask volume, the market is accumulating.</div>
+      <div class="vi-content">Order Book Engine ghi nhận độ sâu lệnh mua/bán, đo Liquidity Law và Authority Law. Mất cân bằng độ sâu cho thấy hỗ trợ/kháng cự thực. Khi khối lượng mua > bán, thị trường đang tích lũy.</div>
+      <div class="math">\[ \text{Depth Imbalance} = \frac{\text{Bid Vol} - \text{Ask Vol}}{\text{Bid Vol} + \text{Ask Vol}} \]</div>
+    </div>
+    <div class="terms-block">
+      <h4>🏷️ KEY TERMS</h4>
+      <div class="en-content"><strong>Bid:</strong> Buy order | <strong>Ask:</strong> Sell order | <strong>Wall:</strong> Large volume cluster | <strong>Spread:</strong> Best bid - best ask | <strong>Liquidity Law:</strong> Execution depth measure</div>
+      <div class="vi-content"><strong>Bid:</strong> Lệnh mua | <strong>Ask:</strong> Lệnh bán | <strong>Wall:</strong> Vùng khối lượng lớn | <strong>Spread:</strong> Chênh lệch giá | <strong>Liquidity Law:</strong> Đo độ sâu giao dịch</div>
+    </div>
+    <div class="pls-block">
+      <h4>📊 PLS EXAMPLE (PLS.ASX)</h4>
+      <div class="en-content">PLS shows 177 bids (3.06M) vs 96 asks (2.76M). Bid wall at $6.400 (191.7K), ask wall at $6.800 (337.7K). Spread 0.30%, depth balanced. Liquidity Law = 46 (medium). Institutions accumulating quietly.</div>
+      <div class="vi-content">PLS có 177 lệnh mua (3.06M) vs 96 lệnh bán (2.76M). Tường mua $6.400 (191.7K), tường bán $6.800 (337.7K). Spread 0.30%, độ sâu cân bằng. Liquidity Law = 46 (trung bình). Tổ chức đang gom hàng lặng lẽ.</div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: HISTORICAL -->
+  <section id="screen2" class="screen-section fade-in">
+    <h2 class="screen-title"><span class="badge">Screen 2</span> Historical View — Trend & Volatility</h2>
+    <img src="images/Screen2.jpeg" class="screen-img" alt="Historical PLS" onerror="this.src='https://placehold.co/800x400/1f4f8f/white?text=Screen2-Historical'">
+    <div class="theory-block">
+      <h4>📖 THEORY</h4>
+      <div class="en-content">Historical Engine computes Risk Law (volatility regime) and Time Law (SMA alignment). Negative Risk = stable environment (accumulation-friendly). Positive Risk = chaotic (distribution risk).</div>
+      <div class="vi-content">Historical Engine tính Risk Law (chế độ biến động) và Time Law (căn chỉnh SMA). Risk âm = môi trường ổn định. Risk dương = hỗn loạn (rủi ro phân phối).</div>
+      <div class="math">\[ \text{Risk}_{RI} = \frac{\sigma_{20}}{\mu_{20}} \times 100, \quad \text{Vol}_{ann} = \sigma_{20} \times \sqrt{252} \]</div>
+    </div>
+    <div class="terms-block">
+      <h4>🏷️ KEY TERMS</h4>
+      <div class="en-content"><strong>SMA20/SMA50:</strong> Moving averages | <strong>Volatility (40% ann.):</strong> Moderate regime | <strong>Drawdown:</strong> -3.8% from high | <strong>Range:</strong> $1.07–$6.81</div>
+      <div class="vi-content"><strong>SMA20/SMA50:</strong> Trung bình động | <strong>Volatility (40% ann.):</strong> Biến động vừa | <strong>Drawdown:</strong> -3.8% từ đỉnh | <strong>Range:</strong> $1.07–$6.81</div>
+    </div>
+    <div class="pls-block">
+      <h4>📊 PLS EXAMPLE</h4>
+      <div class="en-content">PLS Close $6.55 (-2.82%), SMA20 $6.305, SMA50 $5.826 → uptrend. Risk Law = –51 (40% annualized volatility). Time Law = +61 (positive trend alignment).</div>
+      <div class="vi-content">PLS Close $6.55 (-2.82%), SMA20 $6.305, SMA50 $5.826 → xu hướng tăng. Risk Law = –51 (biến động 40%/năm). Time Law = +61 (căn chỉnh xu hướng dương).</div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: TAPE ENGINE -->
+  <section id="screen3" class="screen-section fade-in">
+    <h2 class="screen-title"><span class="badge">Screen 3</span> Tape Engine — Intraday Flow & Blocks</h2>
+    <img src="images/Screen3.jpeg" class="screen-img" alt="Tape Engine PLS" onerror="this.src='https://placehold.co/800x400/1f4f8f/white?text=Screen3-Tape'">
+    <div class="theory-block">
+      <h4>📖 THEORY</h4>
+      <div class="en-content">Tape Engine measures Flow Law (institutional vs retail) and Impact Law (price reaction). VWAP = fair value. Price > VWAP = buyer control. Blocks (≥5K) = institutional fingerprints.</div>
+      <div class="vi-content">Tape Engine đo Flow Law (tổ chức vs bán lẻ) và Impact Law (phản ứng giá). VWAP = giá trị hợp lý. Giá > VWAP = người mua kiểm soát. Block (≥5K) = dấu vân tay tổ chức.</div>
+      <div class="math">\[ \text{VWAP} = \frac{\sum (\text{Price}_i \times \text{Volume}_i)}{\sum \text{Volume}_i}, \quad \text{Flow}_{RI} = \frac{V_{inst}}{V_{total}} \times 100 \]</div>
+    </div>
+    <div class="terms-block">
+      <h4>🏷️ KEY TERMS</h4>
+      <div class="en-content"><strong>VWAP:</strong> Volume-weighted avg price | <strong>Block trade:</strong> ≥5,000 shares | <strong>CVD:</strong> Cumulative Volume Delta | <strong>Volume Profile:</strong> POC, HVN, LVN</div>
+      <div class="vi-content"><strong>VWAP:</strong> Giá TB theo khối lượng | <strong>Block trade:</strong> ≥5,000 cp | <strong>CVD:</strong> Tích lũy delta khối lượng | <strong>Volume Profile:</strong> POC, HVN, LVN</div>
+    </div>
+    <div class="pls-block">
+      <h4>📊 PLS EXAMPLE</h4>
+      <div class="en-content">1,383 trades, 4.13M volume, VWAP $6.7534. Block trades: 76.7% of volume (3.17M). Largest block: 1.5M shares at $6.770 ($10.15M). Flow Law = +89, Impact Law = –94 (absorption).</div>
+      <div class="vi-content">1,383 giao dịch, 4.13M volume, VWAP $6.7534. Block trades: 76.7% khối lượng (3.17M). Block lớn nhất: 1.5M cp tại $6.770 ($10.15M). Flow Law = +89, Impact Law = –94 (hấp thụ).</div>
+    </div>
+  </section>
+
+  <!-- SCREEN 4: FLOW ENGINE -->
+  <section id="screen4" class="screen-section fade-in">
+    <h2 class="screen-title"><span class="badge">Screen 4</span> Flow Engine — Institutional vs Retail</h2>
+    <img src="images/Screen4.jpeg" class="screen-img" alt="Flow Engine PLS" onerror="this.src='https://placehold.co/800x400/1f4f8f/white?text=Screen4-Flow'">
+    <div class="theory-block">
+      <h4>📖 THEORY</h4>
+      <div class="en-content">Flow Engine measures Possession Law (ownership shift) and Authority Law (venue dominance). Institutional Estimate = % volume ≥1K. Low dark pool = no stealth distribution. ASX dominant = transparent market.</div>
+      <div class="vi-content">Flow Engine đo Possession Law (chuyển dịch sở hữu) và Authority Law (thống trị venue). Institutional Estimate = % volume ≥1K. Dark pool thấp = không có phân phối ẩn. ASX thống trị = thị trường minh bạch.</div>
+    </div>
+    <div class="terms-block">
+      <h4>🏷️ KEY TERMS</h4>
+      <div class="en-content"><strong>Institutional Est.:</strong> 94.4% | <strong>Dark Pool:</strong> 0.7% | <strong>Cross Trades:</strong> 2.0% | <strong>Venue Split:</strong> ASX 95.1% / CXA 4.9%</div>
+      <div class="vi-content"><strong>Institutional Est.:</strong> 94.4% | <strong>Dark Pool:</strong> 0.7% | <strong>Cross Trades:</strong> 2.0% | <strong>Venue Split:</strong> ASX 95.1% / CXA 4.9%</div>
+    </div>
+    <div class="pls-block">
+      <h4>📊 PLS EXAMPLE</h4>
+      <div class="en-content">Institutional Estimate 94.4% (3.90M shares). Dark pool 0.7% (very low). ASX 95.1% dominant. Possession Law = +100, Authority Law = +84. Flow Verdict: Institutional Accumulation.</div>
+      <div class="vi-content">Institutional Estimate 94.4% (3.90M cp). Dark pool 0.7% (rất thấp). ASX 95.1% thống trị. Possession Law = +100, Authority Law = +84. Flow Verdict: Institutional Accumulation.</div>
+    </div>
+  </section>
+
+  <!-- SCREEN 5: MICROSTRUCTURE ENGINE -->
+  <section id="screen5" class="screen-section fade-in">
+    <h2 class="screen-title"><span class="badge">Screen 5</span> Microstructure Engine — Liquidity & Momentum</h2>
+    <img src="images/Screen5.jpeg" class="screen-img" alt="Microstructure PLS" onerror="this.src='https://placehold.co/800x400/1f4f8f/white?text=Screen5-Micro'">
+    <div class="theory-block">
+      <h4>📖 THEORY</h4>
+      <div class="en-content">Microstructure Engine aggregates Liquidity Law, Impact Law, and Possession Law. Liquidity Score (0–100): higher = deeper market. Low spread = efficient. Positive momentum = buyer control.</div>
+      <div class="vi-content">Microstructure Engine tổng hợp Liquidity Law, Impact Law, và Possession Law. Liquidity Score (0–100): cao = thị trường sâu. Spread thấp = hiệu quả. Momentum dương = người mua kiểm soát.</div>
+      <div class="math">\[ \text{Liquidity}_{RI} = \frac{\text{Depth}_{bid} + \text{Depth}_{ask}}{2 \times \text{AvgVol}} \times 100 \]</div>
+    </div>
+    <div class="terms-block">
+      <h4>🏷️ KEY TERMS</h4>
+      <div class="en-content"><strong>Liquidity Score:</strong> 65/100 | <strong>Spread:</strong> 0.532% | <strong>5D Momentum:</strong> +4.30% | <strong>Block Pressure:</strong> HIGH (76.7%) | <strong>Venue Frag:</strong> LOW (4.9%)</div>
+      <div class="vi-content"><strong>Liquidity Score:</strong> 65/100 | <strong>Spread:</strong> 0.532% | <strong>5D Momentum:</strong> +4.30% | <strong>Block Pressure:</strong> HIGH (76.7%) | <strong>Venue Frag:</strong> LOW (4.9%)</div>
+    </div>
+    <div class="pls-block">
+      <h4>📊 PLS EXAMPLE</h4>
+      <div class="en-content">Micro Verdict: Balanced — price discovery mode. Liquidity 65, Spread 0.532%, Momentum +4.30% bullish. Block Pressure HIGH, Dark Pool LOW, Venue Frag LOW → institutional control.</div>
+      <div class="vi-content">Micro Verdict: Balanced — chế độ khám phá giá. Liquidity 65, Spread 0.532%, Momentum +4.30% tăng. Block Pressure HIGH, Dark Pool LOW, Venue Frag LOW → tổ chức kiểm soát.</div>
+    </div>
+  </section>
+
+  <!-- SCREEN 6: BALANCE LAWS -->
+  <section id="screen6" class="screen-section fade-in">
+    <h2 class="screen-title"><span class="badge">Screen 6</span> Seven Balance Laws & Execution Plan</h2>
+    <img src="images/Screen6.jpeg" class="screen-img" alt="Balance Laws PLS" onerror="this.src='https://placehold.co/800x400/1f4f8f/white?text=Screen6-Balance'">
+    <div class="theory-block">
+      <h4>📖 THEORY</h4>
+      <div class="en-content">Composite Balance = weighted average of 7 laws (L,F,R,T,P,I,A). Range –100 to +100. Phase determined by Flow, Risk, Time. Execution Plan generated from Balance + Phase.</div>
+      <div class="vi-content">Composite Balance = trung bình có trọng số của 7 luật (L,F,R,T,P,I,A). Thang –100 đến +100. Phase xác định từ Flow, Risk, Time. Execution Plan từ Balance + Phase.</div>
+      <div class="math">\[ \text{Composite} = \frac{0.22F + 0.18P + 0.15A + 0.15I + 0.12R + 0.10T + 0.08L}{7} \times \text{scale} \]</div>
+    </div>
+    <div class="terms-block">
+      <h4>🏷️ KEY TERMS</h4>
+      <div class="en-content"><strong>L=46, F=+89, R=51, T=+61, P=+100, I=94, A=+84</strong> | <strong>Composite:</strong> +20 (Bullish Bias) | <strong>Phase:</strong> Neutral/Rotation | <strong>Confidence:</strong> 60%</div>
+      <div class="vi-content"><strong>L=46, F=+89, R=51, T=+61, P=+100, I=94, A=+84</strong> | <strong>Composite:</strong> +20 (Bullish Bias) | <strong>Phase:</strong> Neutral/Rotation | <strong>Confidence:</strong> 60%</div>
+    </div>
+    <div class="pls-block">
+      <h4>📊 PLS EXAMPLE</h4>
+      <div class="en-content">Decision: HOLD. Entry $6.179–$6.242, Exit $6.47, Stop $6.026 (-8%), Targets $6.47/$6.81. Hold while Balance > +5 and Phase = Accumulation. Trim if Balance < 0 or Phase → Distribution.</div>
+      <div class="vi-content">Decision: HOLD. Entry $6.179–$6.242, Exit $6.47, Stop $6.026 (-8%), Target $6.47/$6.81. Giữ khi Balance > +5 và Phase = Accumulation. Trim nếu Balance < 0 hoặc Phase → Distribution.</div>
+    </div>
+  </section>
+
+  <!-- SCREEN 7: MODULES OVERVIEW -->
+  <section id="screen7" class="screen-section fade-in">
+    <h2 class="screen-title"><span class="badge">Screen 7</span> Modules Overview — 19 AI Feeds</h2>
+    <div class="theory-block">
+      <h4>📖 THEORY</h4>
+      <div class="en-content">19 modules = 19 compute threads (Order Book, Tape, Flow, Micro, Trend, Risk, Decision). IRISBus aggregates data → 7 Balance Laws → Composite → Phase → Execution Plan.</div>
+      <div class="vi-content">19 modules = 19 luồng tính toán (Order Book, Tape, Flow, Micro, Trend, Risk, Decision). IRISBus tổng hợp → 7 Balance Laws → Composite → Phase → Execution Plan.</div>
+    </div>
+    <div class="terms-block">
+      <h4>🏷️ KEY TERMS</h4>
+      <div class="en-content"><strong>IRISBus:</strong> Data router + validator | <strong>Consensus:</strong> Bull(2)/Bear(0)/Neutral(16) | <strong>Timing:</strong> SCALE IN | <strong>Active modules:</strong> 19/19</div>
+      <div class="vi-content"><strong>IRISBus:</strong> Định tuyến + xác thực dữ liệu | <strong>Consensus:</strong> Bull(2)/Bear(0)/Neutral(16) | <strong>Timing:</strong> SCALE IN | <strong>Active modules:</strong> 19/19</div>
+    </div>
+    <div class="pls-block">
+      <h4>📊 PLS EXAMPLE</h4>
+      <div class="en-content">19/19 modules active. Bull signals: PossessionEngine (Transitional), PDMEM (Uptrend). Bear signals: 0. Consensus: LEAN BULLISH — SCALE IN.</div>
+      <div class="vi-content">19/19 modules active. Bull signals: PossessionEngine (Transitional), PDMEM (Uptrend). Bear signals: 0. Consensus: LEAN BULLISH — SCALE IN.</div>
+    </div>
+  </section>
+
+  <!-- SCREEN 8: CIE REPORT -->
+  <section id="screen8" class="screen-section fade-in">
+    <h2 class="screen-title"><span class="badge">Screen 8</span> CIE Report — Systemic Intelligence</h2>
+    <img src="images/linkedinpost2.jpg" class="screen-img" alt="CIE Report" onerror="this.src='https://placehold.co/800x400/1f4f8f/white?text=Screen8-CIEReport'">
+    <div class="theory-block">
+      <h4>📖 THEORY</h4>
+      <div class="en-content">CIE‑Server runs daily at 6AM: scans news, macro, domain shifts → 34+ signals → Phase Engine v3.2 (P1–P6). Cascade Intensity measures shock propagation. Cross-Domain Coupling = # active domains.</div>
+      <div class="vi-content">CIE‑Server chạy hàng ngày lúc 6AM: quét tin tức, vĩ mô, domain → 34+ tín hiệu → Phase Engine v3.2 (P1–P6). Cascade Intensity đo độ lan truyền sốc. Cross-Domain Coupling = số domain kích hoạt.</div>
+      <div class="math">\[ \text{Propagation} = \text{Impact} \times \text{Cascade} \times \text{DomainCoupling} \]</div>
+    </div>
+    <div class="terms-block">
+      <h4>🏷️ KEY TERMS</h4>
+      <div class="en-content"><strong>P6 Systemic Fracture:</strong> Highest risk | <strong>Cascade Intensity:</strong> 87% High | <strong>Cross-Domain Coupling:</strong> Strong | <strong>Gem-Cascade v3.2:</strong> Propagation model | <strong>Confidence:</strong> 94%</div>
+      <div class="vi-content"><strong>P6 Systemic Fracture:</strong> Rủi ro cao nhất | <strong>Cascade Intensity:</strong> 87% High | <strong>Cross-Domain Coupling:</strong> Mạnh | <strong>Gem-Cascade v3.2:</strong> Mô hình lan truyền | <strong>Confidence:</strong> 94%</div>
+    </div>
+    <div class="pls-block">
+      <h4>📊 PLS EXAMPLE</h4>
+      <div class="en-content">Macro Phase P6 (95% confidence). Correlated weakness in Industrial Metals & Global Tech. Institutional sentiment Net Short (3 days). Gem-Cascade Confidence: Very High (94%). Execution: Risk-off, avoid new positions.</div>
+      <div class="vi-content">Macro Phase P6 (95% confidence). Suy yếu tương quan trong Industrial Metals & Global Tech. Tâm lý tổ chức Net Short (3 ngày). Gem-Cascade Confidence: Very High (94%). Execution: Risk-off, tránh vị thế mới.</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2014–2026 RI‑Ecosys™ — IRIS‑X™ v12.0 | CIE‑X™ v9.9 | All Rights Reserved</p>
+    <p>Commercial use and AI training strictly prohibited. Unauthorized copying or redistribution prohibited.</p>
+  </footer>
+</div>
+
+<button class="return-btn" onclick="window.location.href='index.html'">⬅ Return to Main Dashboard</button>
+
+<script>
+  // Language Toggle
+  const langBtns = document.querySelectorAll('.lang-btn');
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      document.body.classList.remove('lang-en', 'lang-vi');
+      document.body.classList.add(`lang-${lang}`);
+      langBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Theme Toggle
+  const themeBtns = document.querySelectorAll('.theme-btn');
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.theme;
+      document.documentElement.setAttribute('data-theme', theme);
+      themeBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Smooth scroll TOC
+  const tocBtns = document.querySelectorAll('.toc-btn');
+  tocBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Default EN + Light
+  document.body.classList.add('lang-en');
+  document.documentElement.setAttribute('data-theme', 'light');
+</script>
+</body>
+</html>

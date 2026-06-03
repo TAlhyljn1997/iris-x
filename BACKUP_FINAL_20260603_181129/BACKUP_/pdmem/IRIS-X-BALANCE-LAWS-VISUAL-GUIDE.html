@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRIS-X Seven Balance Laws — Visual Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            padding: 40px 20px;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #2980b9 0%, #1a5490 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #2980b9;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Seven Laws Grid */
+        .laws-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .law-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f4f8 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 6px solid #3498db;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .law-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .law-card h4 {
+            color: #2980b9;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+
+        .law-card .theory {
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .law-card .example {
+            background: #ecf0f1;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-family: 'Courier New', monospace;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        /* Score Indicators */
+        .score-ranges {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .score-box {
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .score-high {
+            background: #d5f4e6;
+            color: #27ae60;
+        }
+
+        .score-mid {
+            background: #fdebd0;
+            color: #d68910;
+        }
+
+        .score-low {
+            background: #fadbd8;
+            color: #c0392b;
+        }
+
+        /* Decision Matrix */
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .matrix-card {
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid;
+            color: white;
+        }
+
+        .matrix-card h4 {
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .matrix-card ul {
+            list-style: none;
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        .matrix-card li:before {
+            content: "✓ ";
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .matrix-bullish {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            border-left-color: #1e8449;
+        }
+
+        .matrix-rotation {
+            background: linear-gradient(135deg, #f39c12 0%, #d68910 100%);
+            border-left-color: #b8860b;
+        }
+
+        .matrix-bearish {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            border-left-color: #a93226;
+        }
+
+        /* Radar/Balance Visualization */
+        .radar-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .radar-svg {
+            max-width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            border-radius: 10px;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+
+        /* Phase Detection Table */
+        .phase-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        .phase-table th {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .phase-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .phase-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .phase-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .p1 { background: #d5f4e6; color: #27ae60; }
+        .p2 { background: #d6eaf8; color: #2980b9; }
+        .p3 { background: #fef5e7; color: #f39c12; }
+        .p4 { background: #fadbd8; color: #e74c3c; }
+        .p5 { background: #f5b7b1; color: #c0392b; }
+        .p6 { background: #d5d8dc; color: #34495e; }
+
+        /* Quick Reference */
+        .quick-ref {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .quick-ref-item {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            border-top: 4px solid #3498db;
+        }
+
+        .quick-ref-item .label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+        }
+
+        .quick-ref-item .value {
+            font-size: 1.3em;
+            color: #2980b9;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .checklist ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .checklist li {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        /* Decision Tree */
+        .decision-tree {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .laws-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .phase-table {
+                font-size: 0.85em;
+            }
+
+            .phase-table th,
+            .phase-table td {
+                padding: 8px;
+            }
+        }
+
+        print {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>⚖️ IRIS-X Seven Balance Laws</h1>
+            <p>Visual Guide to Microstructure Analysis</p>
+        </header>
+
+        <!-- Section 1: What Are the Seven Laws? -->
+        <div class="section">
+            <h2>📚 What Are the Seven Balance Laws?</h2>
+            <p>The Seven Balance Laws quantify distinct aspects of market microstructure. Together, they form a holistic measure of structural equilibrium and institutional control.</p>
+
+            <div class="laws-grid">
+                <div class="law-card">
+                    <h4>1️⃣ Liquidity Law (L)</h4>
+                    <div class="theory">
+                        Measures execution ease and cost without distorting price.
+                    </div>
+                    <div class="score-ranges">
+                        <div class="score-box score-low">0–30: Illiquid</div>
+                        <div class="score-box score-mid">31–60: Moderate</div>
+                        <div class="score-box score-high">61–100: High</div>
+                    </div>
+                    <div class="example">
+                        PLS L = 46<br/>
+                        → Below average, expect slippage
+                    </div>
+                </div>
+
+                <div class="law-card">
+                    <h4>2️⃣ Flow Law (F)</h4>
+                    <div class="theory">
+                        Tracks institutional vs retail order flow direction.
+                    </div>
+                    <div class="score-ranges">
+                        <div class="score-box score-low">&lt;–50: Selling</div>
+                        <div class="score-box score-mid">–50 to +50: Neutral</div>
+                        <div class="score-box score-high">&gt;+50: Buying</div>
+                    </div>
+                    <div class="example">
+                        PLS F = +89<br/>
+                        → Strong institutional accumulation
+                    </div>
+                </div>
+
+                <div class="law-card">
+                    <h4>3️⃣ Risk Law (R)</h4>
+                    <div class="theory">
+                        Quantifies volatility regime and price uncertainty.
+                    </div>
+                    <div class="score-ranges">
+                        <div class="score-box score-high">&lt;40%: Low Vol</div>
+                        <div class="score-box score-mid">40–60%: Moderate</div>
+                        <div class="score-box score-low">&gt;60%: High Vol</div>
+                    </div>
+                    <div class="example">
+                        PLS R = 51<br/>
+                        → Moderate volatility (40.8% annualized)
+                    </div>
+                </div>
+
+                <div class="law-card">
+                    <h4>4️⃣ Time Law (T)</h4>
+                    <div class="theory">
+                        Evaluates price alignment with moving average cycles.
+                    </div>
+                    <div class="score-ranges">
+                        <div class="score-box score-low">&lt;40: Downtrend</div>
+                        <div class="score-box score-mid">40–70: Rotation</div>
+                        <div class="score-box score-high">&gt;70: Uptrend</div>
+                    </div>
+                    <div class="example">
+                        PLS T = 80<br/>
+                        → Close &gt; SMA20 &gt; SMA50 &gt; SMA200
+                    </div>
+                </div>
+
+                <div class="law-card">
+                    <h4>5️⃣ Possession Law (P)</h4>
+                    <div class="theory">
+                        Quantifies ownership shift from retail to institutional.
+                    </div>
+                    <div class="score-ranges">
+                        <div class="score-box score-low">&lt;–50: Retail</div>
+                        <div class="score-box score-mid">–50 to +50: Balanced</div>
+                        <div class="score-box score-high">&gt;+50: Institutional</div>
+                    </div>
+                    <div class="example">
+                        PLS P = +88<br/>
+                        → Institutions control ownership
+                    </div>
+                </div>
+
+                <div class="law-card">
+                    <h4>6️⃣ Impact Law (I)</h4>
+                    <div class="theory">
+                        Measures price response to trade volume and pressure.
+                    </div>
+                    <div class="score-ranges">
+                        <div class="score-box score-low">&lt;30: Low Impact</div>
+                        <div class="score-box score-mid">30–60: Moderate</div>
+                        <div class="score-box score-high">61–100: High Impact</div>
+                    </div>
+                    <div class="example">
+                        PLS I = 94<br/>
+                        → Aggressive institutional buying
+                    </div>
+                </div>
+
+                <div class="law-card">
+                    <h4>7️⃣ Authority Law (A)</h4>
+                    <div class="theory">
+                        Evaluates venue dominance and market control.
+                    </div>
+                    <div class="score-ranges">
+                        <div class="score-box score-low">&lt;40: Fragmented</div>
+                        <div class="score-box score-mid">40–70: Moderate</div>
+                        <div class="score-box score-high">&gt;70: Dominant</div>
+                    </div>
+                    <div class="example">
+                        PLS A = 84<br/>
+                        → ASX dominance (94%), transparent
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Balance Index -->
+        <div class="section">
+            <h2>🧮 Balance Index (Composite Score)</h2>
+            <p>A weighted aggregate of all seven laws, providing holistic market health assessment.</p>
+
+            <div class="quick-ref">
+                <div class="quick-ref-item">
+                    <div class="label">Balance Index = Avg(L,F,R,T,P,I,A)</div>
+                    <div class="value">75–100</div>
+                    <div class="label" style="color: #27ae60; font-weight: bold; margin-top: 8px;">Strong (BUY)</div>
+                </div>
+                <div class="quick-ref-item">
+                    <div class="label">Example: PLS Current</div>
+                    <div class="value">76</div>
+                    <div class="label" style="color: #27ae60; margin-top: 8px;">P1/Early P2 Phase</div>
+                </div>
+                <div class="quick-ref-item">
+                    <div class="label">Score Interpretation</div>
+                    <div class="value">→ HOLD/Accumulate</div>
+                    <div class="label" style="color: #27ae60; margin-top: 8px;">Institutional Control</div>
+                </div>
+            </div>
+
+            <div class="decision-tree">Score Ranges:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+75–100: Strong (BUY/ACCUMULATE) ✅
+60–74:  Good (HOLD/SELECTIVE) ⚠️
+50–59:  Weak (WAIT/REDUCE) ⚠️
+&lt;50:   Poor (EXIT/AVOID) ❌
+            </div>
+        </div>
+
+        <!-- Section 3: Decision Matrices -->
+        <div class="section">
+            <h2>🎯 Decision Matrices</h2>
+
+            <div class="matrix-grid">
+                <div class="matrix-card matrix-bullish">
+                    <h4>✅ BULLISH Scenario</h4>
+                    <ul>
+                        <li>Flow &gt; +50 (Institutions buying)</li>
+                        <li>Possession &gt; +50 (Ownership shift)</li>
+                        <li>Authority &gt; 70 (Venue control)</li>
+                        <li>Impact 60–100 (Buying pressure)</li>
+                        <li>Time &gt; 70 (Trend up)</li>
+                    </ul>
+                    <div style="margin-top: 15px; font-weight: 600; font-size: 1.05em;">
+                        → ACTION: BUY or ACCUMULATE
+                    </div>
+                </div>
+
+                <div class="matrix-card matrix-rotation">
+                    <h4>🔄 ROTATION Scenario</h4>
+                    <ul>
+                        <li>Flow: –30 to +30 (Mixed sentiment)</li>
+                        <li>Possession: balanced (Retail ≈ Inst)</li>
+                        <li>Authority 50–70 (Some fragmentation)</li>
+                        <li>Impact 30–60 (Moderate action)</li>
+                        <li>Time 40–70 (Transition zone)</li>
+                    </ul>
+                    <div style="margin-top: 15px; font-weight: 600; font-size: 1.05em;">
+                        → ACTION: HOLD or WAIT
+                    </div>
+                </div>
+
+                <div class="matrix-card matrix-bearish">
+                    <h4>❌ BEARISH Scenario</h4>
+                    <ul>
+                        <li>Flow &lt; –50 (Institutions selling)</li>
+                        <li>Possession &lt; –50 (Retail dominance)</li>
+                        <li>Authority &lt; 50 (Fragmented)</li>
+                        <li>Impact &gt; 80 (Selling pressure)</li>
+                        <li>Time &lt; 40 (Downtrend)</li>
+                    </ul>
+                    <div style="margin-top: 15px; font-weight: 600; font-size: 1.05em;">
+                        → ACTION: REDUCE or EXIT
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Phase Detection -->
+        <div class="section">
+            <h2>📈 Phase Detection (P1–P6)</h2>
+
+            <table class="phase-table">
+                <tr>
+                    <th>Phase</th>
+                    <th>Flow</th>
+                    <th>Possession</th>
+                    <th>Impact</th>
+                    <th>Balance Index</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td><span class="phase-badge p1">P1: Accumulation</span></td>
+                    <td>+60 to +100</td>
+                    <td>+40 to +100</td>
+                    <td>50–80</td>
+                    <td>70–85</td>
+                    <td>BUY dips, accumulate</td>
+                </tr>
+                <tr>
+                    <td><span class="phase-badge p2">P2: Breakout</span></td>
+                    <td>+40 to +80</td>
+                    <td>+30 to +80</td>
+                    <td>70–100</td>
+                    <td>75–90</td>
+                    <td>Ride momentum</td>
+                </tr>
+                <tr>
+                    <td><span class="phase-badge p3">P3: Distribution</span></td>
+                    <td>–30 to +30</td>
+                    <td>+20 to +50</td>
+                    <td>40–70</td>
+                    <td>55–75</td>
+                    <td>Be selective, trim</td>
+                </tr>
+                <tr>
+                    <td><span class="phase-badge p4">P4: Breakdown</span></td>
+                    <td>–40 to –10</td>
+                    <td>–20 to +20</td>
+                    <td>60–90</td>
+                    <td>40–65</td>
+                    <td>Exit long positions</td>
+                </tr>
+                <tr>
+                    <td><span class="phase-badge p5">P5: Capitulation</span></td>
+                    <td>&lt; –60</td>
+                    <td>&lt; –40</td>
+                    <td>70–100</td>
+                    <td>30–50</td>
+                    <td>Watch for reversal</td>
+                </tr>
+                <tr>
+                    <td><span class="phase-badge p6">P6: Systemic Fracture</span></td>
+                    <td>&lt; –70</td>
+                    <td>&lt; –70</td>
+                    <td>&gt; 90</td>
+                    <td>&lt; 30</td>
+                    <td>AVOID</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 5: Pre-Entry Checklist -->
+        <div class="section">
+            <h2>✅ Pre-Entry Checklist</h2>
+            <p>Before buying, verify these criteria:</p>
+
+            <div class="checklist">
+                <ul>
+                    <li><input type="checkbox"> Liquidity &gt; 45 (can exit if needed)</li>
+                    <li><input type="checkbox"> Flow &gt; +40 (institutional interest positive)</li>
+                    <li><input type="checkbox"> Risk &lt; 60% (volatility manageable)</li>
+                    <li><input type="checkbox"> Time &gt; 60 (price above SMA20)</li>
+                    <li><input type="checkbox"> Possession &gt; +30 (institutional lean)</li>
+                    <li><input type="checkbox"> Authority &gt; 60 (venue clear)</li>
+                    <li><input type="checkbox"> Impact 50–80 (not yet parabolic)</li>
+                </ul>
+            </div>
+
+            <div style="background: #d5f4e6; padding: 15px; border-radius: 8px; margin-top: 15px; color: #27ae60; font-weight: 600;">
+                ✅ If ≥ 5 checkmarks → GREEN LIGHT (proceed with entry)
+            </div>
+            <div style="background: #fdebd0; padding: 15px; border-radius: 8px; margin-top: 10px; color: #d68910; font-weight: 600;">
+                ⚠️ If &lt; 4 checkmarks → WAIT (better setup coming)
+            </div>
+        </div>
+
+        <!-- Section 6: Position Sizing -->
+        <div class="section">
+            <h2>📊 Position Sizing Guide</h2>
+
+            <table class="phase-table">
+                <tr>
+                    <th>Balance Index</th>
+                    <th>Position Size</th>
+                    <th>Stop Loss</th>
+                    <th>Target</th>
+                    <th>Hold Time</th>
+                </tr>
+                <tr style="background: #d5f4e6;">
+                    <td><strong>80–100</strong></td>
+                    <td>100%</td>
+                    <td>Tight (–2%)</td>
+                    <td>5–8%</td>
+                    <td>5–20 days</td>
+                </tr>
+                <tr>
+                    <td><strong>70–79</strong></td>
+                    <td>75%</td>
+                    <td>Normal (–3%)</td>
+                    <td>3–5%</td>
+                    <td>3–15 days</td>
+                </tr>
+                <tr style="background: #f8f9fa;">
+                    <td><strong>60–69</strong></td>
+                    <td>50%</td>
+                    <td>Wide (–4%)</td>
+                    <td>2–3%</td>
+                    <td>1–5 days</td>
+                </tr>
+                <tr>
+                    <td><strong>50–59</strong></td>
+                    <td>25%</td>
+                    <td>Very wide (–5%)</td>
+                    <td>1–2%</td>
+                    <td>&lt; 1 day</td>
+                </tr>
+                <tr style="background: #fadbd8;">
+                    <td><strong>&lt; 50</strong></td>
+                    <td>0% (STAY OUT)</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 7: Red Flags -->
+        <div class="section">
+            <h2>🚨 Red Flags & Warning Signs</h2>
+
+            <h3>Immediate Caution (Next 5–10 minutes)</h3>
+            <div style="background: #fadbd8; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 5px solid #c0392b;">
+                <strong>❌ Flow suddenly flips negative 30+ points</strong><br/>
+                <strong>❌ Authority drops below 50 (venue fragmentation)</strong><br/>
+                <strong>❌ Impact spikes above 90 on down volume</strong><br/>
+                → REDUCE position by 25–50%
+            </div>
+
+            <h3>Session Caution (Next 1–2 hours)</h3>
+            <div style="background: #fdebd0; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 5px solid #d68910;">
+                <strong>⚠️ Liquidity drops below 35</strong><br/>
+                <strong>⚠️ Risk exceeds 70 (intraday volatility extreme)</strong><br/>
+                <strong>⚠️ Possession turning negative</strong><br/>
+                → Consider tightening stops
+            </div>
+
+            <h3>Structural Caution (Next 1–3 days)</h3>
+            <div style="background: #fdebd0; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 5px solid #d68910;">
+                <strong>⚠️ Balance Index falls below 50 for 2+ consecutive days</strong><br/>
+                <strong>⚠️ Phase probability switching from P1 to P3+</strong><br/>
+                <strong>⚠️ Time Law showing price below SMA50</strong><br/>
+                → Review thesis; prepare exit plan
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <h3>⚖️ IRIS-X Seven Balance Laws Visual Guide</h3>
+            <p>Print this page as a reference guide for trading decisions</p>
+            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+                Created: June 3, 2026 | For: IRIS-X v12.0 | Status: ✅ FINAL
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Make checkboxes work
+        document.querySelectorAll('.checklist input').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const checkedCount = document.querySelectorAll('.checklist input:checked').length;
+                const totalCount = document.querySelectorAll('.checklist input').length;
+                console.log(`Checked: ${checkedCount}/${totalCount}`);
+            });
+        });
+
+        // Print functionality
+        window.print_guide = function() {
+            window.print();
+        };
+    </script>
+
+</body>
+</html>

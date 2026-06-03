@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!--
+RI‑ECOSYS™ PROPRIETARY CODE
+© 2014–2026 RI‑Ecosys™ | All Rights Reserved
+IRIS-X™ System Version 12.0
+Landing Page — 9 Navigation Cards
+Unauthorized reproduction, distribution, or AI training prohibited.
+Contact: ba@ri-ecosys.com for licensing inquiries.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- SEO & Social Media -->
+  <title>IRIS-X™ v12.0 — Intelligent Real-time Insight System</title>
+  <meta name="description" content="IRIS-X™ v12.0: Microstructure analytics engine measuring market structure, phases P1–P6, and institutional behavior. RI‑Ecosys™ framework.">
+  <meta name="keywords" content="IRIS-X, CIE-X, microstructure, market intelligence, trading">
+  <meta name="author" content="RI‑Ecosys™">
+  <meta name="copyright" content="© 2014–2026 RI‑Ecosys™">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="IRIS-X™ v12.0 — Complete Documentation">
+  <meta property="og:description" content="9-module navigation hub for IRIS-X™ v12.0 documentation.">
+  <meta property="og:url" content="https://ai-balance.org/iris-x/">
+
+  <link rel="stylesheet" href="css/irisx-docs.css">
+  <link rel="stylesheet" href="css/doc-modules-styles.css">
+  <script defer src="js/lang-toggle.js"></script>
+  <script defer src="js/index-init.js"></script>
+</head>
+<body data-lang="en">
+  <!-- Header -->
+  <header class="ix-header">
+    <div class="ix-header-content">
+      <div class="ix-logo">IRIS-X™</div>
+      <div class="ix-header-right">
+        <p class="ix-tagline t-en">Intelligent Real-time Insight System</p>
+        <p class="ix-tagline t-vi">Hệ Thống Phân Tích Tức Thời Thông Minh</p>
+      </div>
+      <div class="ix-lang-switch">
+        <button id="lang-en" class="active">EN</button>
+        <button id="lang-vi">VI</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="ix-main">
+    <!-- Title Section -->
+    <section class="ix-hero">
+      <h1 class="t-en">IRIS-X™ v12.0 Documentation Suite</h1>
+      <h1 class="t-vi">Bộ Tài Liệu IRIS-X™ v12.0</h1>
+
+      <p class="t-en">Navigate the complete microstructure analytics ecosystem. Select a module below to explore.</p>
+      <p class="t-vi">Khám phá hệ thống phân tích microstructure hoàn chỉnh. Chọn một module dưới đây để bắt đầu.</p>
+    </section>
+
+    <!-- Panel Container (Hidden by default) -->
+    <div id="irisx-doc-root" style="display: none; margin-bottom: 60px;"></div>
+
+    <!-- 9 Cards Grid (Hidden when panel is open) -->
+    <section id="ix-cards-section" class="ix-cards-grid">
+      <!-- Card 0: DEMO (Special Button) -->
+      <button id="btn-demo" class="ix-card" style="cursor: pointer; background: linear-gradient(135deg, #0066cc 0%, #004499 100%); color: white; border: none; text-decoration: none; display: block; padding: 0;">
+        <div class="card-icon">🎬</div>
+        <h3 class="t-en">IRIS-X Demo</h3>
+        <h3 class="t-vi">Demo IRIS-X</h3>
+        <p class="t-en">Complete interactive walkthrough (8 screens)</p>
+        <p class="t-vi">Hướng dẫn tương tác hoàn chỉnh (8 màn hình)</p>
+      </button>
+
+      <!-- Card 1: Whitepaper -->
+      <a href="whitepaper.html" class="ix-card">
+        <div class="card-icon">📋</div>
+        <h3 class="t-en">Whitepaper</h3>
+        <h3 class="t-vi">Báo Cáo Kỹ Thuật</h3>
+        <p class="t-en">Complete v12.0 technical documentation</p>
+        <p class="t-vi">Tài liệu kỹ thuật hoàn chỉnh v12.0</p>
+      </a>
+
+      <!-- Card 2: Knowledge Base -->
+      <button id="btn-knowledge-base" class="ix-card" style="cursor: pointer; border: none; text-decoration: none; display: block; padding: 0; background: inherit; color: inherit;">
+        <div class="card-icon">🧠</div>
+        <h3 class="t-en">Knowledge Base</h3>
+        <h3 class="t-vi">Cơ Sở Kiến Thức</h3>
+        <p class="t-en">Comprehensive concept reference</p>
+        <p class="t-vi">Tài liệu tham khảo khái niệm</p>
+      </button>
+
+      <!-- Card 3: Glossary -->
+      <a href="modules/glossary.html" class="ix-card">
+        <div class="card-icon">📚</div>
+        <h3 class="t-en">Glossary</h3>
+        <h3 class="t-vi">Từ Điển</h3>
+        <p class="t-en">Interactive search & filter (163 terms)</p>
+        <p class="t-vi">Tìm kiếm và lọc tương tác (163 thuật ngữ)</p>
+      </a>
+
+      <!-- Card 4: Balance Laws -->
+      <button id="btn-balance-laws" class="ix-card" style="cursor: pointer; border: none; text-decoration: none; display: block; padding: 0; background: inherit; color: inherit;">
+        <div class="card-icon">⚖️</div>
+        <h3 class="t-en">Balance Laws</h3>
+        <h3 class="t-vi">Các Luật Cân Bằng</h3>
+        <p class="t-en">7 laws mathematical foundations</p>
+        <p class="t-vi">Nền tảng toán học của 7 luật</p>
+      </button>
+
+      <!-- Card 5: System Integration -->
+      <button id="btn-system-integration" class="ix-card" style="cursor: pointer; border: none; text-decoration: none; display: block; padding: 0; background: inherit; color: inherit;">
+        <div class="card-icon">🔗</div>
+        <h3 class="t-en">System Integration</h3>
+        <h3 class="t-vi">Tích Hợp Hệ Thống</h3>
+        <p class="t-en">Frontend + Backend architecture</p>
+        <p class="t-vi">Kiến trúc Frontend + Backend</p>
+      </button>
+
+      <!-- Card 6: 5 Engines -->
+      <a href="cie/IRIS-X-5-ENGINES-INTERACTIVE.html" class="ix-card">
+        <div class="card-icon">⚙️</div>
+        <h3 class="t-en">5 Engines</h3>
+        <h3 class="t-vi">5 Công Cụ</h3>
+        <p class="t-en">Order Book, Trade, CoS, Signals, Phase</p>
+        <p class="t-vi">Order Book, Trade, CoS, Signals, Phase</p>
+      </a>
+
+      <!-- Card 7: Dashboard -->
+      <a href="cie/iris-x-ciei-ecosystem-dashboard.html" class="ix-card">
+        <div class="card-icon">📊</div>
+        <h3 class="t-en">Dashboard</h3>
+        <h3 class="t-vi">Bảng Điều Khiển</h3>
+        <p class="t-en">Interactive monitoring interface</p>
+        <p class="t-vi">Giao diện giám sát tương tác</p>
+      </a>
+
+      <!-- Card 8: Visual Guide -->
+      <a href="pdmem/IRIS-X-BALANCE-LAWS-VISUAL-GUIDE.html" class="ix-card">
+        <div class="card-icon">🎨</div>
+        <h3 class="t-en">Visual Guide</h3>
+        <h3 class="t-vi">Hướng Dẫn Hình Ảnh</h3>
+        <p class="t-en">Visual explanations & diagrams</p>
+        <p class="t-vi">Giải thích hình ảnh & sơ đồ</p>
+      </a>
+
+      <!-- Card 9: Volume Theory -->
+      <button id="btn-volume-theory" class="ix-card" style="cursor: pointer; border: none; text-decoration: none; display: block; padding: 0; background: inherit; color: inherit;">
+        <div class="card-icon">📈</div>
+        <h3 class="t-en">Volume Theory</h3>
+        <h3 class="t-vi">Lý Thuyết Volume</h3>
+        <p class="t-en">Advanced volume spike research</p>
+        <p class="t-vi">Nghiên cứu nâng cao về volume spike</p>
+      </button>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="ix-cta">
+      <h2 class="t-en">Getting Started</h2>
+      <h2 class="t-vi">Bắt Đầu</h2>
+
+      <div class="cta-content">
+        <div class="cta-box">
+          <h3 class="t-en">New to IRIS-X™?</h3>
+          <h3 class="t-vi">Mới dùng IRIS-X™?</h3>
+          <p class="t-en">Start with the Whitepaper for a complete overview of the system.</p>
+          <p class="t-vi">Bắt đầu với Báo Cáo Kỹ Thuật để có cái nhìn tổng quan.</p>
+        </div>
+
+        <div class="cta-box">
+          <h3 class="t-en">Need a Glossary?</h3>
+          <h3 class="t-vi">Cần Từ Điển?</h3>
+          <p class="t-en">Jump to the Glossary or Knowledge Base for quick term lookup.</p>
+          <p class="t-vi">Nhảy tới Từ Điển hoặc Cơ Sở Kiến Thức để tìm kiếm nhanh.</p>
+        </div>
+
+        <div class="cta-box">
+          <h3 class="t-en">Ready to Explore?</h3>
+          <h3 class="t-vi">Sẵn Sàng Khám Phá?</h3>
+          <p class="t-en">Select any card above to dive into that module.</p>
+          <p class="t-vi">Chọn bất kỳ card nào ở trên để tìm hiểu module đó.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="ix-footer">
+    <div class="footer-content">
+      <p class="t-en">© 2014–2026 RI‑Ecosys™ Microstructure Balance Model. All rights reserved.</p>
+      <p class="t-vi">© 2014–2026 RI‑Ecosys™ Mô Hình Cân Bằng Microstructure. Bảo lưu mọi quyền.</p>
+
+      <p class="t-en">
+        <strong>Restrictions:</strong> Unauthorized commercial use and AI training strictly prohibited.
+        <a href="mailto:ba@ri-ecosys.com">ba@ri-ecosys.com</a> for licensing inquiries.
+      </p>
+      <p class="t-vi">
+        <strong>Hạn Chế:</strong> Nghiêm cấm sử dụng thương mại trái phép và dùng để huấn luyện AI.
+        <a href="mailto:ba@ri-ecosys.com">ba@ri-ecosys.com</a> cho yêu cầu cấp phép.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================================ -->
+  <!-- GLOBAL FUNCTIONS FOR DOC MODULES & PANELS -->
+  <!-- ============================================================ -->
+  <script type="module">
+    /**
+     * Global function to return to main dashboard
+     * Used by all doc modules and panels
+     */
+    window.returnToMainDashboard = function() {
+      const docRoot = document.getElementById('irisx-doc-root');
+      const cardsSection = document.getElementById('ix-cards-section');
+      const heroSection = document.querySelector('.ix-hero');
+
+      if (docRoot) {
+        docRoot.innerHTML = '';
+        docRoot.style.display = 'none';
+      }
+
+      if (cardsSection) {
+        cardsSection.style.display = 'block';
+      }
+
+      if (heroSection) {
+        heroSection.style.display = 'block';
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    /**
+     * Generic function to load any JS module and render as panel
+     * @param {string} modulePath - Path to JS file (e.g., 'demo', 'doc-irisx-volume-spike')
+     * @param {string} exportName - Export name (e.g., 'content', 'demoContent', 'irisxVolumeSpikeView')
+     */
+    window.loadDocModule = async function(modulePath, exportName = 'content') {
+      try {
+        const module = await import(`./doc-modules/${modulePath}.js`);
+        const content = module[exportName];
+        const metadata = module.metadata || {};
+        const tableOfContents = module.tableOfContents || [];
+
+        const docRoot = document.getElementById('irisx-doc-root');
+        const cardsSection = document.getElementById('ix-cards-section');
+        const heroSection = document.querySelector('.ix-hero');
+
+        // Show panel, hide cards and hero
+        if (cardsSection) cardsSection.style.display = 'none';
+        if (heroSection) heroSection.style.display = 'none';
+
+        if (docRoot) {
+          docRoot.innerHTML = content;
+          docRoot.style.display = 'block';
+
+          // Update page title
+          if (metadata.title) {
+            document.title = `IRIS-X™ — ${metadata.title}`;
+          }
+
+          // Generate TOC if needed
+          const tocList = docRoot.querySelector('#toc-list');
+          if (tocList && tableOfContents && tableOfContents.length > 0) {
+            tocList.innerHTML = '';
+            tableOfContents.forEach(item => {
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              a.href = '#' + item.id;
+              a.textContent = item.label;
+              li.appendChild(a);
+              tocList.appendChild(li);
+            });
+          }
+
+          // Animation
+          requestAnimationFrame(() => {
+            const layout = docRoot.querySelector('.doc-layout');
+            if (layout) {
+              layout.style.opacity = '0';
+              layout.style.transform = 'translateY(12px)';
+              setTimeout(() => {
+                layout.style.transition = 'opacity 0.35s ease-out, transform 0.35s ease-out';
+                layout.style.opacity = '1';
+                layout.style.transform = 'translateY(0)';
+              }, 0);
+            }
+          });
+
+          // Smooth scroll TOC
+          const tocLinks = docRoot.querySelectorAll('.doc-toc a');
+          tocLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+              e.preventDefault();
+              const targetId = link.getAttribute('href').substring(1);
+              const target = document.getElementById(targetId);
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            });
+          });
+
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      } catch (error) {
+        console.error(`Error loading module: ${modulePath}`, error);
+        alert(`Failed to load ${modulePath}. Please check the console.`);
+      }
+    };
+
+    /**
+     * Open specific doc modules
+     */
+    window.openDemoPanel = () => window.loadDocModule('demo', 'content');
+    window.openKnowledgeBase = () => window.loadDocModule('doc-irisx-knowledge-base', 'content');
+    window.openBalanceLaws = () => window.loadDocModule('doc-irisx-balance-laws', 'content');
+    window.openSystemIntegration = () => window.loadDocModule('doc-irisx-complete-system-integration', 'irisxCompleteSystemIntegrationView');
+    window.openVolumeTheory = () => window.loadDocModule('doc-irisx-volume-spike', 'content');
+
+    // Hook all buttons to their respective functions
+    const demoBtn = document.getElementById('btn-demo');
+    if (demoBtn) demoBtn.addEventListener('click', window.openDemoPanel);
+
+    const kbBtn = document.getElementById('btn-knowledge-base');
+    if (kbBtn) kbBtn.addEventListener('click', window.openKnowledgeBase);
+
+    const blBtn = document.getElementById('btn-balance-laws');
+    if (blBtn) blBtn.addEventListener('click', window.openBalanceLaws);
+
+    const siBtn = document.getElementById('btn-system-integration');
+    if (siBtn) siBtn.addEventListener('click', window.openSystemIntegration);
+
+    const vtBtn = document.getElementById('btn-volume-theory');
+    if (vtBtn) vtBtn.addEventListener('click', window.openVolumeTheory);
+  </script>
+</body>
+</html>

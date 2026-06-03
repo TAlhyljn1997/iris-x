@@ -40,6 +40,10 @@ export const content = `
   .accordion-content table { margin: 20px 0; border-collapse: collapse; width: 100%; }
   .accordion-content th, .accordion-content td { padding: 14px 18px; text-align: left; border: 1px solid #e0e4e8; }
   .accordion-content th { background: linear-gradient(135deg, #e8ecf1 0%, #dfe4eb 100%); font-weight: 700; }
+  .accordion-content ul, .accordion-content ol { margin: 16px 0 18px 24px; padding-left: 0; }
+  .accordion-content li { margin: 10px 0; line-height: 1.65; color: #333; }
+  .screen-content { margin-top: 0; }
+  .screen-content > *:first-child { margin-top: 0; }
 </style>
 <div class="doc-layout fade-in-up">
 

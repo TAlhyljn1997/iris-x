@@ -27,12 +27,26 @@ export const tableOfContents = [
 ];
 
 export const content = `
+<style>
+  .accordion-item { all: revert; }
+  .accordion-content h2 { font-size: 1.35rem; font-weight: 700; margin: 28px 0 18px; color: #0066cc; letter-spacing: -0.5px; }
+  .accordion-content h3 { font-size: 1.12rem; font-weight: 650; margin: 22px 0 14px; color: #1a1a1a; letter-spacing: -0.3px; }
+  .accordion-content h4 { font-size: 1rem; font-weight: 650; margin: 16px 0 10px; color: #1a1a1a; }
+  .accordion-content p { font-size: 0.99rem; line-height: 1.72; margin: 0 0 16px; color: #333; }
+  .accordion-content strong { font-weight: 700; color: #0066cc; }
+  .accordion-content em { font-style: italic; color: #666; }
+  .accordion-content li { margin: 8px 0; }
+  .accordion-content code { background: #f0f4f8; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.92rem; }
+  .accordion-content table { margin: 20px 0; border-collapse: collapse; width: 100%; }
+  .accordion-content th, .accordion-content td { padding: 14px 18px; text-align: left; border: 1px solid #e0e4e8; }
+  .accordion-content th { background: linear-gradient(135deg, #e8ecf1 0%, #dfe4eb 100%); font-weight: 700; }
+</style>
 <div class="doc-layout fade-in-up">
 
-  <header class="doc-header">
-    <h1>IRIS-X v12.0 — Complete Demo Panel</h1>
-    <p class="doc-subtitle">Click triangles to expand/collapse screens</p>
-    <button class="btn-return-dashboard" onclick="returnToMainDashboard()" style="margin-top: 15px;">
+  <header class="doc-header" style="padding: 20px 0;">
+    <h1 style="font-size: 2.5rem; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.8px;">IRIS-X v12.0 — Complete Demo Panel</h1>
+    <p class="doc-subtitle" style="font-size: 1.15rem; margin: 0 0 20px; font-weight: 500; color: #555;">Microstructure Balance Model | Click triangles to expand/collapse screens</p>
+    <button class="btn-return-dashboard" onclick="returnToMainDashboard()" style="margin-top: 0; padding: 12px 20px; font-size: 0.95rem;">
       ⬅ Return to Main Dashboard
     </button>
   </header>
@@ -44,12 +58,12 @@ export const content = `
     <!-- SCREEN 1: ORDER BOOK DUMP -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <details id="screen1" class="accordion-item" open>
-      <summary class="accordion-header">
-        <span class="accordion-triangle">▼</span>
-        <h2 style="display:inline; margin: 0;">Screen 1 — Order Book Dump</h2>
+      <summary class="accordion-header" style="display: flex; align-items: center; gap: 16px; padding: 22px 28px; background: linear-gradient(135deg, #f5f8fc 0%, #eef2f7 100%); cursor: pointer; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e0e4e8; list-style: none;">
+        <span class="accordion-triangle" style="font-size: 1.2rem; min-width: 24px; display: flex; align-items: center; color: #0066cc; font-weight: 700;">▼</span>
+        <h2 style="display:inline; margin: 0; font-size: 1.3rem; font-weight: 650; color: #1a1a1a; letter-spacing: -0.4px;">Screen 1 — Order Book Dump</h2>
       </summary>
-      <div class="accordion-content">
-      <figure class="screen-image">
+      <div class="accordion-content" style="padding: 40px 28px; background: #ffffff;">
+      <figure class="screen-image" style="margin: 0 0 32px 0;">
         <img src="https://ai-balance.org/iris-x/images/Screen1.jpeg" alt="Order Book Dump" loading="lazy" />
         <figcaption>Order Book snapshot showing bid/ask depth and liquidity imbalance</figcaption>
       </figure>
@@ -132,12 +146,12 @@ export const content = `
     <!-- SCREEN 2: HISTORICAL VIEW -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <details id="screen2" class="accordion-item">
-      <summary class="accordion-header">
-        <span class="accordion-triangle">▶</span>
-        <h2 style="display:inline; margin: 0;">Screen 2 — Historical View</h2>
+      <summary class="accordion-header" style="display: flex; align-items: center; gap: 16px; padding: 22px 28px; background: linear-gradient(135deg, #f5f8fc 0%, #eef2f7 100%); cursor: pointer; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e0e4e8; list-style: none;">
+        <span class="accordion-triangle" style="font-size: 1.2rem; min-width: 24px; display: flex; align-items: center; color: #0066cc; font-weight: 700;">▶</span>
+        <h2 style="display:inline; margin: 0; font-size: 1.3rem; font-weight: 650; color: #1a1a1a; letter-spacing: -0.4px;">Screen 2 — Historical View</h2>
       </summary>
-      <div class="accordion-content">
-      <figure class="screen-image">
+      <div class="accordion-content" style="padding: 40px 28px; background: #ffffff;">
+      <figure class="screen-image" style="margin: 0 0 32px 0;">
         <img src="https://ai-balance.org/iris-x/images/Screen2.jpeg" alt="Historical Chart" loading="lazy" />
         <figcaption>20-day historical price chart with SMA and volatility bands</figcaption>
       </figure>
@@ -230,8 +244,8 @@ export const content = `
         <span class="accordion-triangle">▶</span>
         <h2 style="display:inline; margin: 0;">Screen 3 — Tape Engine</h2>
       </summary>
-      <div class="accordion-content">
-      <figure class="screen-image">
+      <div class="accordion-content" style="padding: 40px 28px; background: #ffffff;">
+      <figure class="screen-image" style="margin: 0 0 32px 0;">
         <img src="https://ai-balance.org/iris-x/images/Screen3.jpeg" alt="Tape Engine Analysis" loading="lazy" />
         <figcaption>Intraday tape analysis: trades, volume, block activity</figcaption>
       </figure>
@@ -327,8 +341,8 @@ export const content = `
         <span class="accordion-triangle">▶</span>
         <h2 style="display:inline; margin: 0;">Screen 4 — Flow Engine</h2>
       </summary>
-      <div class="accordion-content">
-      <figure class="screen-image">
+      <div class="accordion-content" style="padding: 40px 28px; background: #ffffff;">
+      <figure class="screen-image" style="margin: 0 0 32px 0;">
         <img src="https://ai-balance.org/iris-x/images/Screen4.jpeg" alt="Flow Engine Analysis" loading="lazy" />
         <figcaption>Institutional flow analysis: venue split, dark pool activity, possession estimate</figcaption>
       </figure>
@@ -427,8 +441,8 @@ export const content = `
         <span class="accordion-triangle">▶</span>
         <h2 style="display:inline; margin: 0;">Screen 5 — Microstructure Engine</h2>
       </summary>
-      <div class="accordion-content">
-      <figure class="screen-image">
+      <div class="accordion-content" style="padding: 40px 28px; background: #ffffff;">
+      <figure class="screen-image" style="margin: 0 0 32px 0;">
         <img src="https://ai-balance.org/iris-x/images/Screen5.jpeg" alt="Microstructure Engine" loading="lazy" />
         <figcaption>Liquidity, spread, and momentum metrics</figcaption>
       </figure>
@@ -519,8 +533,8 @@ export const content = `
         <span class="accordion-triangle">▶</span>
         <h2 style="display:inline; margin: 0;">Screen 6 — Balance Laws Engine</h2>
       </summary>
-      <div class="accordion-content">
-      <figure class="screen-image">
+      <div class="accordion-content" style="padding: 40px 28px; background: #ffffff;">
+      <figure class="screen-image" style="margin: 0 0 32px 0;">
         <img src="https://ai-balance.org/iris-x/images/Screen6.jpeg" alt="Balance Laws Computation" loading="lazy" />
         <figcaption>Seven Balance Laws aggregated into composite Balance Score</figcaption>
       </figure>
@@ -645,8 +659,8 @@ export const content = `
         <span class="accordion-triangle">▶</span>
         <h2 style="display:inline; margin: 0;">Screen 7 — Modules Overview</h2>
       </summary>
-      <div class="accordion-content">
-      <figure class="screen-image">
+      <div class="accordion-content" style="padding: 40px 28px; background: #ffffff;">
+      <figure class="screen-image" style="margin: 0 0 32px 0;">
         <img src="https://ai-balance.org/iris-x/images/Screen7.jpeg" alt="Modules Overview" loading="lazy" />
         <figcaption>Integration of 19 AI modules and consensus decision</figcaption>
       </figure>
@@ -734,8 +748,8 @@ export const content = `
         <span class="accordion-triangle">▶</span>
         <h2 style="display:inline; margin: 0;">Screen 8 — CIE Report Integration</h2>
       </summary>
-      <div class="accordion-content">
-      <figure class="screen-image">
+      <div class="accordion-content" style="padding: 40px 28px; background: #ffffff;">
+      <figure class="screen-image" style="margin: 0 0 32px 0;">
         <img src="https://ai-balance.org/iris-x/images/linkedinpost2.jpg" alt="CIE-X Report" loading="lazy" />
         <figcaption>CIE-X macro regime, 6AM signals, and consolidation/expansion analysis</figcaption>
       </figure>

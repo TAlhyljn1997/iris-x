@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCE v1.0 - Universal Capacity Governance Kernel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header .tagline {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        header .meta {
+            margin-top: 20px;
+            opacity: 0.85;
+            font-size: 0.95em;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section h4 {
+            color: #555;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        /* Architecture Diagram */
+        .architecture {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .layer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .layer:hover {
+            transform: translateY(-5px);
+        }
+
+        .layer .number {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .layer .name {
+            font-size: 1.1em;
+        }
+
+        .layer .description {
+            font-size: 0.85em;
+            opacity: 0.9;
+            margin-top: 10px;
+            font-weight: normal;
+        }
+
+        /* Pipeline Diagram */
+        .pipeline {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .pipeline-flow {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .flow-item {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            border: 2px solid #667eea;
+            font-weight: 500;
+            color: #667eea;
+        }
+
+        .arrow {
+            font-size: 1.5em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Layer Details */
+        .layer-detail {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .layer-detail h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        /* Code Block */
+        code, pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        /* Domain Comparison Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        table tr:hover {
+            background: #eef0f7;
+        }
+
+        /* Feature Boxes */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-box {
+            background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+            border: 2px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-box h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        /* Checkmarks */
+        .checkmark {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .cross {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        /* Comparison Cards */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .comparison-card {
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-card.direction1 {
+            background: linear-gradient(135deg, #ff6b6b20 0%, #ff6b6b40 100%);
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .comparison-card.direction2 {
+            background: linear-gradient(135deg, #4ecdc420 0%, #4ecdc440 100%);
+            border-left: 5px solid #4ecdc4;
+        }
+
+        .comparison-card h3 {
+            margin-top: 0;
+        }
+
+        .comparison-card .pro {
+            color: #27ae60;
+            margin: 10px 0;
+        }
+
+        .comparison-card .con {
+            color: #e74c3c;
+            margin: 10px 0;
+        }
+
+        /* API Schema */
+        .api-schema {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-left: 4px solid #667eea;
+        }
+
+        .json-key {
+            color: #66d9ef;
+        }
+
+        .json-string {
+            color: #e6db74;
+        }
+
+        .json-number {
+            color: #ae81ff;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: 30px;
+            background: #ddd;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-item h4 {
+            margin-top: 0;
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            .pipeline-flow {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        /* Floating Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            z-index: 50;
+            transition: all 0.3s;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .scroll-top.hidden {
+            display: none;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-button {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            color: #999;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🧬 BCE v1.0</h1>
+            <p class="tagline">Universal Capacity Governance Kernel</p>
+            <div class="meta">
+                <p>Status: Architecture Specification | System-Level</p>
+                <p>Classification: Core Infrastructure Layer</p>
+                <p>Date: 2026-06-20</p>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="#executive">Executive</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#layers">8 Layers</a></li>
+                <li><a href="#adapters">Domain Adapters</a></li>
+                <li><a href="#api">API Contract</a></li>
+                <li><a href="#comparison">Direction Comparison</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+            </ul>
+        </nav>
+
+        <!-- Executive Summary -->
+        <div class="section" id="executive">
+            <h2>📋 Executive Summary</h2>
+
+            <div class="success-box">
+                <strong>🎯 Core Insight:</strong> BCE is <strong>not a health product</strong>, but a <strong>universal infrastructure layer</strong> for reality-aware capacity governance.
+            </div>
+
+            <p>
+                <strong>The Question:</strong> Where is a system going, why, and how do we optimize intervention?
+            </p>
+
+            <h3>🌍 Applied Domains</h3>
+            <p>Architected first for <strong>biological systems</strong> (human health), but extends to:</p>
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li><strong>Organizational Systems</strong> - Company trajectory, burn rate, capacity</li>
+                <li><strong>AI Systems</strong> - Model reliability, governance debt, hallucination</li>
+                <li><strong>Financial Systems</strong> - Solvency, interest rates, runway</li>
+                <li><strong>Educational Systems</strong> - Learning trajectory, intervention effectiveness</li>
+            </ul>
+
+            <h3>🔑 Key Difference from Products</h3>
+            <table>
+                <tr>
+                    <th>Dimension</th>
+                    <th>Health App</th>
+                    <th>Capacity Kernel</th>
+                </tr>
+                <tr>
+                    <td><strong>Nature</strong></td>
+                    <td>Application (calculates scores)</td>
+                    <td>Infrastructure (governs systems)</td>
+                </tr>
+                <tr>
+                    <td><strong>Output</strong></td>
+                    <td>"You're at 72 points"</td>
+                    <td>"Here, why, where, what to do"</td>
+                </tr>
+                <tr>
+                    <td><strong>Scope</strong></td>
+                    <td>Single domain (health)</td>
+                    <td>Multi-domain universal</td>
+                </tr>
+                <tr>
+                    <td><strong>Reusability</strong></td>
+                    <td>Health only</td>
+                    <td>Universal kernel</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Architecture -->
+        <div class="section" id="architecture">
+            <h2>🏗️ System Architecture</h2>
+
+            <h3>Core Principle</h3>
+            <div class="pipeline">
+                <div class="pipeline-flow">
+                    <div class="flow-item">Reality</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">Understanding</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">Capacity</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">Trajectory</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">Intervention</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">Feedback</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>⚡ This is not linear scoring. This is recursive governance.</strong>
+            </div>
+
+            <h3>8-Layer Pipeline</h3>
+            <div class="architecture">
+                <div class="layer">
+                    <div class="number">1️⃣</div>
+                    <div class="name">Reality</div>
+                    <div class="description">Observe raw signals</div>
+                </div>
+                <div class="layer">
+                    <div class="number">2️⃣</div>
+                    <div class="name">Provenance</div>
+                    <div class="description">Trustworthy & traceable</div>
+                </div>
+                <div class="layer">
+                    <div class="number">3️⃣</div>
+                    <div class="name">Constitution</div>
+                    <div class="description">Structural integrity</div>
+                </div>
+                <div class="layer">
+                    <div class="number">4️⃣</div>
+                    <div class="name">Burden</div>
+                    <div class="description">Destructive forces</div>
+                </div>
+                <div class="layer">
+                    <div class="number">5️⃣</div>
+                    <div class="name">Capacity</div>
+                    <div class="description">Resilience & buffer</div>
+                </div>
+                <div class="layer">
+                    <div class="number">6️⃣</div>
+                    <div class="name">Trajectory</div>
+                    <div class="description">Future projection</div>
+                </div>
+                <div class="layer">
+                    <div class="number">7️⃣</div>
+                    <div class="name">Intervention</div>
+                    <div class="description">Optimal actions</div>
+                </div>
+                <div class="layer">
+                    <div class="number">8️⃣</div>
+                    <div class="name">Projection</div>
+                    <div class="description">Scenario outcomes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8 Layers Detail -->
+        <div class="section" id="layers">
+            <h2>📐 8-Layer Architecture Details</h2>
+
+            <!-- Layer 1 -->
+            <div class="layer-detail">
+                <h4>Layer 1️⃣: Reality Layer</h4>
+                <p><strong>Purpose:</strong> Capture raw observations from the system</p>
+                <p><strong>Input:</strong> Raw observations, multi-modal signals, time-stamped measurements</p>
+                <p><strong>Example Output (Health):</strong></p>
+                <div class="api-schema">
+{
+  "reality_vector": [
+    {"dimension": "IR", "raw_value": 7.2},
+    {"dimension": "FAT", "raw_value": 28},
+    {"dimension": "sleep_hours", "raw_value": 5.5}
+  ],
+  "timestamp": "2026-06-20T14:32:00Z"
+}
+                </div>
+            </div>
+
+            <!-- Layer 2 -->
+            <div class="layer-detail">
+                <h4>Layer 2️⃣: Provenance Layer</h4>
+                <p><strong>Purpose:</strong> Make every signal trustworthy and traceable</p>
+                <p><strong>Why Critical:</strong> Lab IR (98% confidence) ≠ Self-reported IR (50% confidence)</p>
+                <p><strong>Example Output:</strong></p>
+                <div class="api-schema">
+{
+  "signals": [
+    {
+      "dimension": "IR",
+      "value": 7.2,
+      "source": "lab_blood_test",
+      "confidence": 0.98,
+      "collection_date": "2026-06-20"
+    },
+    {
+      "dimension": "FAT",
+      "value": 28,
+      "source": "bioimpedance_scale",
+      "confidence": 0.72,
+      "device_id": "withings_ws50"
+    }
+  ]
+}
+                </div>
+            </div>
+
+            <!-- Layer 3 -->
+            <div class="layer-detail">
+                <h4>Layer 3️⃣: Constitution Layer</h4>
+                <p><strong>Purpose:</strong> Map reality into structural integrity of the system</p>
+                <p><strong>Health Example:</strong> Baseline capacity of cardiovascular, metabolic, endocrine systems</p>
+                <p><strong>Other Domains:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Organization: Team structure, process maturity, capital position</li>
+                    <li>AI: Model architecture, training dataset quality</li>
+                    <li>Finance: Balance sheet composition, cash reserves</li>
+                </ul>
+            </div>
+
+            <!-- Layer 4 -->
+            <div class="layer-detail">
+                <h4>Layer 4️⃣: Burden Layer</h4>
+                <p><strong>Purpose:</strong> Quantify destructive forces acting on the system</p>
+                <p><strong>Health Example:</strong></p>
+                <div class="api-schema">
+{
+  "burden_analysis": {
+    "active_stressors": [
+      {
+        "driver": "insulin_resistance",
+        "magnitude": 38,
+        "trend": "increasing"
+      },
+      {
+        "driver": "sleep_deficit",
+        "magnitude": 24,
+        "trend": "stable"
+      },
+      {
+        "driver": "alcohol_consumption",
+        "magnitude": 12,
+        "trend": "variable"
+      }
+    ],
+    "total_burden_load": 62
+  }
+}
+                </div>
+                <p><strong>Across Domains:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Organization: Burn rate, competition, talent churn, debt service</li>
+                    <li>AI: Hallucination rate, tool failures, governance debt</li>
+                </ul>
+            </div>
+
+            <!-- Layer 5 -->
+            <div class="layer-detail">
+                <h4>Layer 5️⃣: Capacity Layer</h4>
+                <p><strong>Purpose:</strong> Calculate remaining system resilience and buffer</p>
+                <p><strong>Formula:</strong> Capacity = Constitution_Score - Burden_Load</p>
+                <div class="api-schema">
+{
+  "capacity": {
+    "current_reserve": 19,
+    "capacity_status": "critical",
+    "time_to_decompensation_days": 14,
+    "capacity_components": {
+      "metabolic_reserve": 8,
+      "stress_tolerance": 15,
+      "recovery_ability": 22
+    }
+  }
+}
+                </div>
+                <p><strong>Interpretation:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Capacity &gt; 60 = System thriving</li>
+                    <li>Capacity 40-60 = System healthy but watch</li>
+                    <li>Capacity 0-20 = System critical</li>
+                    <li>Capacity &lt; 0 = System decompensating</li>
+                </ul>
+            </div>
+
+            <!-- Layer 6 -->
+            <div class="layer-detail">
+                <h4>Layer 6️⃣: Trajectory Layer</h4>
+                <p><strong>Purpose:</strong> Project future capacity state given current dynamics</p>
+                <p><strong>Temporal Dimensions:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Snapshot: Current capacity</li>
+                    <li>Velocity: Rate of change (points/day)</li>
+                    <li>Acceleration: Change in rate</li>
+                    <li>Projection: Where in 30/90 days?</li>
+                </ul>
+                <p><strong>Example:</strong> "Capacity = 19 today, projected -8 in 30 days, decompensation on 2026-07-04"</p>
+            </div>
+
+            <!-- Layer 7 -->
+            <div class="layer-detail">
+                <h4>Layer 7️⃣: Intervention Layer</h4>
+                <p><strong>Purpose:</strong> Calculate optimal actions to improve trajectory</p>
+                <p><strong>Logic:</strong></p>
+                <ol style="margin-left: 20px;">
+                    <li>Rank burden drivers by leverage (impact × tractability)</li>
+                    <li>Map interventions to drivers</li>
+                    <li>Estimate outcome for each intervention</li>
+                    <li>Optimize intervention portfolio</li>
+                </ol>
+                <p><strong>Example Output:</strong></p>
+                <div class="api-schema">
+{
+  "recommended_sequence": [
+    {
+      "priority": 1,
+      "target": "insulin_resistance",
+      "intervention": "low_glycemic_diet + exercise",
+      "expected_capacity_gain": "+18",
+      "confidence": 0.81,
+      "effort_cost": "medium"
+    },
+    {
+      "priority": 2,
+      "target": "sleep_deficit",
+      "intervention": "sleep_hygiene + schedule protection",
+      "expected_capacity_gain": "+16",
+      "confidence": 0.78,
+      "effort_cost": "low"
+    }
+  ],
+  "total_capacity_gain_if_all_adopted": "+48"
+}
+                </div>
+                <p><strong>Decision Framework:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>✅ High Impact + Low Effort → Do immediately</li>
+                    <li>🟡 High Impact + High Effort → Plan & sequence</li>
+                    <li>⏭️ Low Impact + Low Effort → Optional</li>
+                    <li>❌ Low Impact + High Effort → Skip</li>
+                </ul>
+            </div>
+
+            <!-- Layer 8 -->
+            <div class="layer-detail">
+                <h4>Layer 8️⃣: Projection Layer</h4>
+                <p><strong>Purpose:</strong> Simulate outcomes of intervention strategies</p>
+                <p><strong>Scenarios:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Baseline:</strong> Current trajectory (do nothing)</li>
+                    <li><strong>Minimum Viable:</strong> Smallest intervention set</li>
+                    <li><strong>Optimal:</strong> Full recommended intervention</li>
+                    <li><strong>Aggressive:</strong> Maximum interventions</li>
+                </ul>
+                <p><strong>Example Comparison:</strong></p>
+                <table>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Capacity in 30d</th>
+                        <th>Capacity in 90d</th>
+                        <th>Status in 90d</th>
+                        <th>Success Prob.</th>
+                    </tr>
+                    <tr>
+                        <td>Baseline (do nothing)</td>
+                        <td>-8</td>
+                        <td>-45</td>
+                        <td>System failure</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>Minimum Viable</td>
+                        <td>22</td>
+                        <td>45</td>
+                        <td>Healthy</td>
+                        <td>76%</td>
+                    </tr>
+                    <tr>
+                        <td>Optimal</td>
+                        <td>38</td>
+                        <td>72</td>
+                        <td>Thriving</td>
+                        <td>68%</td>
+                    </tr>
+                    <tr>
+                        <td>Aggressive</td>
+                        <td>58</td>
+                        <td>88</td>
+                        <td>Peak</td>
+                        <td>42%</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Domain Adapters -->
+        <div class="section" id="adapters">
+            <h2>🧩 Domain Adapter Architecture</h2>
+
+            <div class="info-box">
+                <strong>Core Insight:</strong> The 8-layer logic is domain-agnostic. Adapters provide domain-specific definitions.
+            </div>
+
+            <h3>Core vs Adapter Pattern</h3>
+            <p><strong>Core (Universal Logic):</strong> Reality → Provenance → Constitution → Burden → Capacity → Trajectory → Intervention → Projection</p>
+            <p><strong>Adapters (Domain-Specific):</strong> Signal definitions, metrics, intervention library</p>
+
+            <h3>🏥 Health Domain Adapter</h3>
+            <div class="feature-box">
+                <h4>Signal Definitions</h4>
+                <ul>
+                    <li>IR (Insulin Resistance) - Lab or estimate</li>
+                    <li>FAT (Body Fat %) - Bioimpedance or DEXA</li>
+                    <li>Sleep Hours - Device or self-report</li>
+                    <li>Stress Level - Self-report or HRV</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <h4>Constitutional Metrics</h4>
+                <ul>
+                    <li>Cardiovascular integrity</li>
+                    <li>Metabolic health</li>
+                    <li>Endocrine balance</li>
+                    <li>Neurological resilience</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <h4>Intervention Library</h4>
+                <ul>
+                    <li>Diet (low-glycemic, anti-inflammatory)</li>
+                    <li>Exercise (cardio, strength, flexibility)</li>
+                    <li>Sleep optimization</li>
+                    <li>Stress reduction (meditation, therapy)</li>
+                </ul>
+            </div>
+
+            <h3>🏢 Organization Domain Adapter</h3>
+            <div class="feature-box">
+                <h4>Signal Definitions</h4>
+                <ul>
+                    <li>Monthly Burn Rate ($ per month)</li>
+                    <li>Runway (months until insolvency)</li>
+                    <li>Competitor Activity (market share loss)</li>
+                    <li>Talent Churn Rate (%)</li>
+                    <li>Debt Service Ratio (%)</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <h4>Constitutional Metrics</h4>
+                <ul>
+                    <li>Team structure & maturity</li>
+                    <li>Process quality & automation</li>
+                    <li>Capital position (cash, debt)</li>
+                    <li>IP & competitive moat</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <h4>Intervention Library</h4>
+                <ul>
+                    <li>Hiring (speed, retention strategy)</li>
+                    <li>Cost cuts (operating expense reduction)</li>
+                    <li>Revenue acceleration (pricing, sales)</li>
+                    <li>Capital raise (seed, series)</li>
+                </ul>
+            </div>
+
+            <h3>🤖 AI System Adapter</h3>
+            <div class="feature-box">
+                <h4>Signal Definitions</h4>
+                <ul>
+                    <li>Hallucination Rate (% of responses)</li>
+                    <li>Tool Call Success Rate (%)</li>
+                    <li>Latency (ms per request)</li>
+                    <li>Governance Debt (code audit score)</li>
+                    <li>Training Data Drift (detected anomalies)</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <h4>Constitutional Metrics</h4>
+                <ul>
+                    <li>Model architecture maturity</li>
+                    <li>Training dataset quality</li>
+                    <li>Safety testing coverage</li>
+                    <li>Documentation completeness</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <h4>Intervention Library</h4>
+                <ul>
+                    <li>Data quality improvement</li>
+                    <li>Model retraining & fine-tuning</li>
+                    <li>Safety testing expansion</li>
+                    <li>Governance framework implementation</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- API Contract -->
+        <div class="section" id="api">
+            <h2>📡 API Contract (Cross-Domain)</h2>
+
+            <h3>Input Interface</h3>
+            <p><strong>POST /capacity-engine/compute</strong></p>
+            <div class="api-schema">
+{
+  "domain_adapter": "health",
+  "system_id": "human:alice_v1",
+  "observation_batch": {
+    "timestamp": "2026-06-20T14:32:00Z",
+    "signals": [
+      {
+        "dimension": "IR",
+        "value": 7.2,
+        "source": "lab_blood_test",
+        "confidence": 0.98
+      },
+      {
+        "dimension": "FAT",
+        "value": 28,
+        "source": "bioimpedance_scale",
+        "confidence": 0.72
+      }
+    ]
+  },
+  "config": {
+    "projection_horizon_days": 90,
+    "intervention_threshold": "all_options",
+    "scenario_count": 4
+  }
+}
+            </div>
+
+            <h3>Output Interface</h3>
+            <p><strong>Response (200 OK)</strong></p>
+            <div class="api-schema">
+{
+  "computation_id": "uuid-12345",
+  "timestamp": "2026-06-20T14:32:45Z",
+  "system_id": "human:alice_v1",
+  "results": {
+    "layer_5_capacity": {
+      "current_reserve": 19,
+      "capacity_status": "critical",
+      "time_to_decompensation_days": 14
+    },
+    "layer_6_trajectory": {
+      "capacity_30d_baseline": -8,
+      "capacity_90d_baseline": -45,
+      "critical_milestone": "2026-07-04"
+    },
+    "layer_7_intervention": {
+      "recommended_sequence": [
+        {
+          "priority": 1,
+          "target": "insulin_resistance",
+          "expected_capacity_gain": "+18",
+          "confidence": 0.81
+        }
+      ]
+    },
+    "layer_8_projection": {
+      "scenarios": [
+        {
+          "name": "optimal",
+          "capacity_30d": 38,
+          "capacity_90d": 72,
+          "probability": 0.68
+        }
+      ]
+    }
+  },
+  "executive_summary": {
+    "system_status": "critical",
+    "recommended_action": "implement_optimal_scenario",
+    "confidence_overall": 0.75
+  }
+}
+            </div>
+        </div>
+
+        <!-- Comparison -->
+        <div class="section" id="comparison">
+            <h2>⚖️ Fork Point: Direction Comparison</h2>
+
+            <div class="info-box">
+                <strong>⚡ Critical Decision:</strong> This is not a feature choice. This is a phase transition from "application" to "infrastructure."
+            </div>
+
+            <div class="comparison">
+                <div class="comparison-card direction1">
+                    <h3>❌ Direction 1: Health Product</h3>
+                    <p><strong>Bản chất:</strong> Application (measures health)</p>
+                    <p><strong>Mục tiêu:</strong> Calculate NFRI score</p>
+                    <p><strong>Phạm vi:</strong> 1 domain (biological)</p>
+                    <p><strong>Output:</strong> "You're at 72 points"</p>
+                    <p><strong>Logic:</strong> Linear scoring</p>
+
+                    <div class="pro">
+                        ✓ Dễ hiểu, dễ triển khai
+                    </div>
+                    <div class="pro">
+                        ✓ MVP nhanh (4-6 weeks)
+                    </div>
+
+                    <div class="con">
+                        ✗ Chỉ là health scoring system
+                    </div>
+                    <div class="con">
+                        ✗ Rất nhiều sản phẩm làm tương tự
+                    </div>
+                    <div class="con">
+                        ✗ Không reusable sang domains khác
+                    </div>
+                </div>
+
+                <div class="comparison-card direction2">
+                    <h3>✅ Direction 2: ResontoLogic System</h3>
+                    <p><strong>Bản chất:</strong> Infrastructure (governs capacity)</p>
+                    <p><strong>Mục tiêu:</strong> Manage Capacity + Trajectory</p>
+                    <p><strong>Phạm vi:</strong> Multi-domain (bio, org, AI, finance)</p>
+                    <p><strong>Output:</strong> "Here, why, where, what to do"</p>
+                    <p><strong>Logic:</strong> Causal + recursive + explainable</p>
+
+                    <div class="pro">
+                        ✓ Universal governance kernel
+                    </div>
+                    <div class="pro">
+                        ✓ Reusable across domains
+                    </div>
+                    <div class="pro">
+                        ✓ Matches RI-ECOSYS architecture
+                    </div>
+                    <div class="pro">
+                        ✓ Self-improving system (feedback loop)
+                    </div>
+
+                    <div class="con">
+                        ✗ More complex (8 layers vs 3)
+                    </div>
+                    <div class="con">
+                        ✗ Longer implementation (12-16 weeks)
+                    </div>
+                    <div class="con">
+                        ✗ Requires multi-domain expertise
+                    </div>
+                </div>
+            </div>
+
+            <h3>One-Line Framing</h3>
+            <div class="pipeline">
+                <p><strong>Direction 1:</strong> "Bạn đang bao nhiêu điểm?"</p>
+                <p><strong>Direction 2:</strong> "Hệ thống của bạn đang đi về đâu, vì sao, và có thể điều khiển nó như thế nào?"</p>
+            </div>
+        </div>
+
+        <!-- Roadmap -->
+        <div class="section" id="roadmap">
+            <h2>🚀 Implementation Roadmap</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Phase 1: Core Engine (Weeks 1-4)</h4>
+                    <ul>
+                        <li>API contract finalized</li>
+                        <li>Layer computation logic (1-6)</li>
+                        <li>Health domain adapter reference implementation</li>
+                        <li>Unit test coverage > 90%</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Phase 2: Intervention + Projection (Weeks 5-8)</h4>
+                    <ul>
+                        <li>Intervention library builder</li>
+                        <li>Scenario analysis engine</li>
+                        <li>Decision framework</li>
+                        <li>Integration tests</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Phase 3: Feedback Loop (Weeks 9-12)</h4>
+                    <ul>
+                        <li>Provenance integration with RI-ECOSYS</li>
+                        <li>Confidence update on feedback</li>
+                        <li>Learning loop validation</li>
+                        <li>End-to-end system test</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Phase 4: Second Domain Adapter (Weeks 13-16)</h4>
+                    <ul>
+                        <li>Organization OR AI adapter</li>
+                        <li>Cross-domain pattern discovery</li>
+                        <li>Comparative analysis capabilities</li>
+                        <li>Production deployment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design Principles -->
+        <div class="section">
+            <h2>🎯 Design Principles</h2>
+
+            <div class="features">
+                <div class="feature-box">
+                    <h4>1. Causality Over Correlation</h4>
+                    <p>Burden layers explain WHY, not just what. Interventions target root causes.</p>
+                </div>
+
+                <div class="feature-box">
+                    <h4>2. Transparency Over Black Box</h4>
+                    <p>Every number is traceable. Provenance mandatory. Confidence scores explicit.</p>
+                </div>
+
+                <div class="feature-box">
+                    <h4>3. Recursive Over Linear</h4>
+                    <p>Feedback loop inherent. System improves from intervention results.</p>
+                </div>
+
+                <div class="feature-box">
+                    <h4>4. Multi-Domain Over Single-Domain</h4>
+                    <p>Core logic applies to all domains. Adapters are plug-in, not fundamental.</p>
+                </div>
+
+                <div class="feature-box">
+                    <h4>5. Actionable Over Descriptive</h4>
+                    <p>Each layer drives to specific interventions. Governance is the goal.</p>
+                </div>
+
+                <div class="feature-box">
+                    <h4>6. Multi-Context Over Single-Truth</h4>
+                    <p>Same signal captured from multiple sources with confidence scoring.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center;">
+            <h2 style="color: white; border-color: white;">📚 Related Specifications</h2>
+            <ul style="margin-left: 0; list-style: none;">
+                <li>RI-ECOSYS Signal Registry</li>
+                <li>Domain Adapter Specification</li>
+                <li>Provenance Protocol</li>
+                <li>Intervention Library Schema</li>
+                <li>Decision Framework</li>
+            </ul>
+            <hr style="border-color: rgba(255,255,255,0.3); margin: 30px 0;">
+            <p style="font-size: 1.1em;">
+                <strong>BCE v1.0 Specification</strong><br>
+                Not a calculator. Not a health app.<br>
+                A governance kernel for understanding and steering complex adaptive systems.
+            </p>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top hidden" onclick="scrollToTop()">↑</div>
+
+    <script>
+        // Scroll to Top
+        window.addEventListener('scroll', function() {
+            const btn = document.querySelector('.scroll-top');
+            if (window.pageYOffset > 300) {
+                btn.classList.remove('hidden');
+            } else {
+                btn.classList.add('hidden');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Tab functionality (if needed in future)
+        function setupTabs() {
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    const tabContent = document.querySelector(`.tab-content[data-tab="${tabName}"]`);
+
+                    // Hide all tabs
+                    document.querySelectorAll('.tab-content').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+
+                    // Deactivate all buttons
+                    document.querySelectorAll('.tab-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+
+                    // Show selected tab
+                    if (tabContent) {
+                        tabContent.classList.add('active');
+                    }
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        setupTabs();
+    </script>
+</body>
+</html>

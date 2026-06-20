@@ -1,0 +1,20 @@
+[build]
+  publish = "."
+  command = "echo 'No build needed'"
+
+[[redirects]]
+  from = "/"
+  to = "/bce-v1.0-spec.html"
+  status = 200
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Content-Type = "text/html; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"

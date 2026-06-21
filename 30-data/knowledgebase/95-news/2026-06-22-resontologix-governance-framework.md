@@ -1,3 +1,29 @@
+<!-- JSON-LD Structured Data for Search Engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "Resontologix Governance Framework — AI-Balanced Leadership",
+  "description": "Resontologix introduces a human-AI balanced governance framework that aligns enterprise decision-making with AI Center principles.",
+  "datePublished": "2026-06-22T00:00:00Z",
+  "dateModified": "2026-06-22T00:00:00Z",
+  "author": {
+    "@type": "Organization",
+    "name": "RI-ECOSYS Team",
+    "url": "https://github.com/talhyljn1997/iris-x"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Resontologix",
+    "url": "https://github.com/talhyljn1997/iris-x"
+  },
+  "keywords": "Resontologix, governance, AI-balanced, enterprise, transparency, decision-making",
+  "articleSection": "Business",
+  "inLanguage": "en-US",
+  "url": "https://github.com/talhyljn1997/iris-x/blob/main/30-data/knowledgebase/95-news/2026-06-22-resontologix-governance-framework.md"
+}
+</script>
+
 # 📰 Resontologix Governance Framework — AI-Balanced Leadership
 
 **Date:** 2026-06-22  

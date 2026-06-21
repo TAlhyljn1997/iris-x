@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+
+  <!-- News Feed Hub -->
+  <url>
+    <loc>https://github.com/talhyljn1997/iris-x/blob/main/30-data/knowledgebase/95-news/index.md</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- News Items -->
+  <url>
+    <loc>https://github.com/talhyljn1997/iris-x/blob/main/30-data/knowledgebase/95-news/2026-06-21-ri-ecosys-sandbox-architecture.md</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.9</priority>
+    <news:news>
+      <news:publication>
+        <news:name>RI-ECOSYS News</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-06-21</news:publication_date>
+      <news:title>RI-ECOSYS Sandbox Architecture — Enterprise Foundation</news:title>
+      <news:keywords>RI-ECOSYS, sandbox, architecture, enterprise, ecosystem</news:keywords>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://github.com/talhyljn1997/iris-x/blob/main/30-data/knowledgebase/95-news/2026-06-22-resontologix-governance-framework.md</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.9</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Resontologix News</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-06-22</news:publication_date>
+      <news:title>Resontologix Governance Framework — AI-Balanced Leadership</news:title>
+      <news:keywords>Resontologix, governance, AI-balanced, enterprise, transparency</news:keywords>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://github.com/talhyljn1997/iris-x/blob/main/30-data/knowledgebase/95-news/2026-06-23-ai-center-ecosystem-launch.md</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.9</priority>
+    <news:news>
+      <news:publication>
+        <news:name>AI Center News</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-06-23</news:publication_date>
+      <news:title>AI Center Ecosystem Launch — Global Knowledge Platform</news:title>
+      <news:keywords>AI-Center, ecosystem, launch, public-knowledge, transparency</news:keywords>
+    </news:news>
+  </url>
+
+  <!-- Setup & Documentation -->
+  <url>
+    <loc>https://github.com/talhyljn1997/iris-x/blob/main/30-data/knowledgebase/95-news/PIPELINE-SETUP.md</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://github.com/talhyljn1997/iris-x/blob/main/30-data/knowledgebase/95-news/QUICK-START.md</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

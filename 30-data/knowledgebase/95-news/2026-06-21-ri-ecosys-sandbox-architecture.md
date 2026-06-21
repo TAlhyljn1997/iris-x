@@ -1,3 +1,32 @@
+<!-- JSON-LD Structured Data for Search Engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "RI-ECOSYS Sandbox Architecture — Enterprise Foundation",
+  "description": "RI-ECOSYS establishes a standardized sandbox architecture to serve as the foundation for enterprise-grade system operations.",
+  "datePublished": "2026-06-21T00:00:00Z",
+  "dateModified": "2026-06-21T00:00:00Z",
+  "author": {
+    "@type": "Organization",
+    "name": "RI-ECOSYS Team",
+    "url": "https://github.com/talhyljn1997/iris-x"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "RI-ECOSYS",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://github.com/talhyljn1997/iris-x/raw/main/logo.png"
+    }
+  },
+  "keywords": "RI-ECOSYS, sandbox, architecture, enterprise, ecosystem, system-management",
+  "articleSection": "Technology",
+  "inLanguage": "en-US",
+  "url": "https://github.com/talhyljn1997/iris-x/blob/main/30-data/knowledgebase/95-news/2026-06-21-ri-ecosys-sandbox-architecture.md"
+}
+</script>
+
 # 📰 RI-ECOSYS Sandbox Architecture — Enterprise Foundation
 
 **Date:** 2026-06-21  

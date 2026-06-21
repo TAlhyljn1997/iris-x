@@ -1,3 +1,29 @@
+<!-- JSON-LD Structured Data for Search Engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "AI Center Ecosystem Launch — Global Knowledge Platform",
+  "description": "AI Center launches as a public global knowledge platform within RI-ECOSYS, providing transparent access to enterprise research, governance frameworks, and AI-balanced decision-making.",
+  "datePublished": "2026-06-23T00:00:00Z",
+  "dateModified": "2026-06-23T00:00:00Z",
+  "author": {
+    "@type": "Organization",
+    "name": "RI-ECOSYS Team",
+    "url": "https://github.com/talhyljn1997/iris-x"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AI Center",
+    "url": "https://github.com/talhyljn1997/iris-x"
+  },
+  "keywords": "AI-Center, ecosystem, launch, public-knowledge, transparency, research, governance",
+  "articleSection": "Science & Technology",
+  "inLanguage": "en-US",
+  "url": "https://github.com/talhyljn1997/iris-x/blob/main/30-data/knowledgebase/95-news/2026-06-23-ai-center-ecosystem-launch.md"
+}
+</script>
+
 # 📰 AI Center Ecosystem Launch — Global Knowledge Platform
 
 **Date:** 2026-06-23  

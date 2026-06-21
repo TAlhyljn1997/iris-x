@@ -1,0 +1,23 @@
+# RI-ECOSYS Robots Configuration
+# Guides Google, Bing, and other search engines
+
+User-agent: *
+Allow: /
+
+# Prioritize News Feed
+Allow: /30-data/knowledgebase/95-news/
+
+# Prioritize content over templates
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.github/
+
+# Sitemap location
+Sitemap: https://github.com/talhyljn1997/iris-x/raw/main/sitemap.xml
+Sitemap: https://raw.githubusercontent.com/talhyljn1997/iris-x/main/sitemap.xml
+
+# Crawl delay (be respectful)
+Crawl-delay: 1
+
+# Request rate (pages per second)
+Request-rate: 1/10

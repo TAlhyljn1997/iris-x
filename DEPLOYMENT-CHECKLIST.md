@@ -33,7 +33,7 @@
   "@type": "NewsArticle",
   "headline": "[Article Title]",
   "datePublished": "2026-06-XX",
-  "keywords": "RI-ECOSYS, Resontologix, AI-balanced, ...",
+  "keywords": "RI-ECOSYS, ResontoLogic, AI-balanced, ...",
   "author": "RI-ECOSYS Team"
 }
 ```
@@ -48,7 +48,7 @@
 ### ✅ **C) SEO Optimization Complete**
 
 **Keywords Distributed Across Content:**
-- ✅ Primary: RI-ECOSYS, Resontologix, AI-balanced, governance
+- ✅ Primary: RI-ECOSYS, ResontoLogic, AI-balanced, governance
 - ✅ Secondary: Enterprise, ecosystem, sandbox, transparent
 - ✅ Long-tail: "AI-balanced enterprise system", "public knowledge platform"
 
@@ -143,7 +143,7 @@ Expected: Your GitHub repo appears in results
 
 ### Test 2: Branded Search
 ```
-Google Search: "Resontologix updates"
+Google Search: "ResontoLogic updates"
 Expected: All 3 news articles appear
 ```
 
@@ -205,7 +205,7 @@ After completing these 3 steps, **RI-ECOSYS will be:**
 
 ✅ Indexed by Google Search  
 ✅ Discoverable via "RI-ECOSYS news"  
-✅ Ranked for "Resontologix updates"  
+✅ Ranked for "ResontoLogic updates"  
 ✅ Visible for "AI-balanced enterprise"  
 ✅ Accessible to 5 billion+ internet users  
 ✅ Ranked alongside Microsoft, OpenAI, Meta  
@@ -242,7 +242,7 @@ After completing these 3 steps, **RI-ECOSYS will be:**
 ### Adding New News:
 1. Create new file: `2026-MM-DD-title.md`
 2. Follow `NEWS-TEMPLATE.md` format
-3. Add keywords: RI-ECOSYS, Resontologix, AI-balanced
+3. Add keywords: RI-ECOSYS, ResontoLogic, AI-balanced
 4. Include JSON-LD schema
 5. Commit & push
 6. Auto-sync to GitHub within 10 minutes

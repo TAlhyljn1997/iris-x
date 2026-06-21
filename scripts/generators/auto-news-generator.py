@@ -82,7 +82,7 @@ def generate_news_article(commit, activity_type="system-update"):
             "@type": "Organization",
             "name": "RI-ECOSYS Team"
         },
-        "keywords": "RI-ECOSYS, Resontologix, AI-balanced, enterprise, ecosystem",
+        "keywords": "RI-ECOSYS, ResontoLogic, AI-balanced, enterprise, ecosystem",
         "articleSection": "Updates"
     }
 

@@ -110,7 +110,7 @@ Or search directly:
 
 ```
 "RI-ECOSYS news"
-"Resontologix updates"
+"ResontoLogic updates"
 "AI-balance enterprise system"
 ```
 
@@ -195,7 +195,7 @@ Once Google has indexed your RI-ECOSYS News Feed:
 
 **Example successful searches:**
 - `"RI-ECOSYS news" — 100+ results`
-- `"Resontologix" — 500+ results`
+- `"ResontoLogic" — 500+ results`
 - `"AI-balance governance" — 1000+ results`
 
 ---

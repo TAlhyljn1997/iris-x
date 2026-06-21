@@ -1,6 +1,6 @@
 # 📰 RI-ECOSYS News Feed
 
-Welcome to the official **RI-ECOSYS News Feed** — your source for enterprise updates, research findings, governance decisions, and system releases from the Resontologix AI-balanced ecosystem.
+Welcome to the official **RI-ECOSYS News Feed** — your source for enterprise updates, research findings, governance decisions, and system releases from the ResontoLogic AI-balanced ecosystem.
 
 ---
 
@@ -23,7 +23,7 @@ This News Feed publishes:
 *Release* — AI Center launches as a public global knowledge platform with full Google Search indexing.
 
 ### 2026-06-22
-📰 **[Resontologix Governance Framework — AI-Balanced Leadership](./2026-06-22-resontologix-governance-framework.md)**  
+📰 **[ResontoLogic Governance Framework — AI-Balanced Leadership](./2026-06-22-resontologix-governance-framework.md)**  
 *Governance* — Human-AI balanced governance framework for transparent enterprise decision-making.
 
 ### 2026-06-21

@@ -6,7 +6,7 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "RI-ECOSYS",
-  "alternateName": ["Resontologix", "AI Center"],
+  "alternateName": ["ResontoLogic", "AI Center"],
   "description": "Enterprise-grade AI-balanced knowledge ecosystem with transparent governance and global research sharing",
   "url": "https://github.com/talhyljn1997/iris-x",
   "logo": "https://github.com/talhyljn1997/iris-x/raw/main/logo.png",
@@ -27,7 +27,7 @@ Welcome to **RI-ECOSYS**, an enterprise-grade knowledge ecosystem powered by AI-
 
 ## 🌍 What is RI-ECOSYS?
 
-RI-ECOSYS (Resontologix Integrated Ecosystem System) is a **public knowledge platform** that demonstrates:
+RI-ECOSYS (ResontoLogic Integrated Ecosystem System) is a **public knowledge platform** that demonstrates:
 
 - **🏢 Enterprise Architecture** — Scalable, modular system design
 - **⚖️ AI-Balanced Governance** — Human leadership + AI advisory
@@ -44,7 +44,7 @@ Read the latest **RI-ECOSYS News Feed** updates:
 ### [📚 News Hub](./30-data/knowledgebase/95-news/)
 
 - **[2026-06-23] AI Center Ecosystem Launch** — Global knowledge platform goes public
-- **[2026-06-22] Resontologix Governance Framework** — AI-balanced decision-making
+- **[2026-06-22] ResontoLogic Governance Framework** — AI-balanced decision-making
 - **[2026-06-21] RI-ECOSYS Sandbox Architecture** — Enterprise foundation established
 
 ---
@@ -94,7 +94,7 @@ RI-ECOSYS/
 ```
 Search Google for:
   "RI-ECOSYS news"
-  "Resontologix updates"
+  "ResontoLogic updates"
   "AI-Balance enterprise system"
   
 → Find all published updates and research
@@ -108,7 +108,7 @@ Search Google for:
 2. **Structured Data** (JSON-LD) — Google understands context
 3. **Robots.txt** (`/robots.txt`) — Search guidelines
 4. **GitHub Pages** — Fast indexing as public website
-5. **Keywords** — RI-ECOSYS, Resontologix, AI-balanced, governance
+5. **Keywords** — RI-ECOSYS, ResontoLogic, AI-balanced, governance
 
 → **Result:** Global visibility in 24-48 hours
 
@@ -136,7 +136,7 @@ Search Google for:
 ### **For Contributing**
 1. Create a new markdown file: `2026-MM-DD-title.md`
 2. Follow [NEWS-TEMPLATE.md](./30-data/knowledgebase/95-news/NEWS-TEMPLATE.md)
-3. Include keywords: RI-ECOSYS, Resontologix, AI-balanced, enterprise
+3. Include keywords: RI-ECOSYS, ResontoLogic, AI-balanced, enterprise
 4. Commit & push to GitHub
 5. Auto-sync pipeline publishes to GitHub within 10 minutes
 6. Google indexes within 24-48 hours
@@ -149,8 +149,8 @@ Search Google for:
 
 - ✅ "RI-ECOSYS"
 - ✅ "RI-ECOSYS news"
-- ✅ "Resontologix"
-- ✅ "Resontologix updates"
+- ✅ "ResontoLogic"
+- ✅ "ResontoLogic updates"
 - ✅ "AI-Balance enterprise"
 - ✅ "AI-balanced governance"
 - ✅ "Enterprise ecosystem"
@@ -165,7 +165,7 @@ RI-ECOSYS operates on **transparent governance**:
 ```
 AIC (AI Center) — Strategic Oversight
     ↓
-Resontologix — Enterprise Core
+ResontoLogic — Enterprise Core
     ↓
 RI-ECOSYS Operations
     ↓
@@ -208,7 +208,7 @@ Every decision is:
 All content in RI-ECOSYS is **public domain** with attribution requested.
 
 ```
-Attribution: RI-ECOSYS Team / Resontologix
+Attribution: RI-ECOSYS Team / ResontoLogic
 Source: https://github.com/talhyljn1997/iris-x
 ```
 

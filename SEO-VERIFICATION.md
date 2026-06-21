@@ -47,7 +47,7 @@ curl -s https://raw.githubusercontent.com/talhyljn1997/iris-x/main/robots.txt
 | Article | Schema | Keywords | Status |
 |---------|--------|----------|--------|
 | 2026-06-21 Sandbox | NewsArticle | RI-ECOSYS, sandbox, architecture | ✅ |
-| 2026-06-22 Governance | NewsArticle | Resontologix, governance, AI-balanced | ✅ |
+| 2026-06-22 Governance | NewsArticle | ResontoLogic, governance, AI-balanced | ✅ |
 | 2026-06-23 AI Center | NewsArticle | AI-Center, ecosystem, public-knowledge | ✅ |
 
 **Verify JSON-LD Validity:**
@@ -59,7 +59,7 @@ Use [Google Structured Data Tool](https://www.google.com/webmasters/markup-helpe
 
 **Primary Keywords:**
 - ✅ RI-ECOSYS
-- ✅ Resontologix
+- ✅ ResontoLogic
 - ✅ AI-balanced
 - ✅ enterprise ecosystem
 - ✅ governance
@@ -123,7 +123,7 @@ Repository Root (✅ Public)
 3. Finds sitemap.xml → lists all news items
 4. Crawls each article
 5. Parses JSON-LD schema → understands context
-6. Indexes keywords: RI-ECOSYS, Resontologix, etc.
+6. Indexes keywords: RI-ECOSYS, ResontoLogic, etc.
 7. Makes available in search results
 ```
 
@@ -132,7 +132,7 @@ Repository Root (✅ Public)
 When users search:
 - **"RI-ECOSYS"** → 100+ results linking to your repo
 - **"RI-ECOSYS news"** → 50+ results from `/95-news/`
-- **"Resontologix governance"** → Article 2 appears
+- **"ResontoLogic governance"** → Article 2 appears
 - **"AI-balanced enterprise"** → All 3 articles appear
 
 ---

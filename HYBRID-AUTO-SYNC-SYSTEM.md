@@ -150,7 +150,7 @@ Commit message → Parse activity → Generate news article → Add JSON-LD → 
 
 **Keywords included automatically:**
 - RI-ECOSYS
-- Resontologix
+- ResontoLogic
 - AI-balanced
 - Enterprise ecosystem
 
@@ -256,7 +256,7 @@ Settings → Pages → Deploy from: main → Save
 
 24h   → Content indexed
         └─ Articles appear in Google Search
-        └─ Searchable for: "RI-ECOSYS", "Resontologix", etc.
+        └─ Searchable for: "RI-ECOSYS", "ResontoLogic", etc.
 
 48h   → Full indexing complete
         └─ Featured in search results
